@@ -3,6 +3,7 @@ package controller;
 import model.Modelo;
 import model.Usuario;
 import view.Vista;
+import view.VistaBloqueo;
 import view.VistaContacto;
 import view.VistaPersonalizarFondo;
 import view.VistaPremium;
@@ -14,6 +15,7 @@ public class Controlador {
 	private Vista vista;
 	private VistaPremium vistaPremium;
 	private Usuario usuarioAceptado;
+	private VistaBloqueo vistaBloqueo;
 	private VistaContacto vistaContacto;
 	
 	public Controlador(Modelo modelo, Vista vista) {
@@ -65,5 +67,20 @@ public class Controlador {
 		vistaContacto.ejecutar();		
 	}
 	
+	public void bloquearPantalla() {
+		vistaPremium.deshabilitar();
+		vistaBloqueo = new VistaBloqueo(this);
+		vistaBloqueo.ejecutar();
+	}
+	
+	public void desbloquearPantalla(String contraseña) {
+		Usuario usuario = modelo.iniciarSesion(usuarioAceptado.getNombre(), contraseña); 
+		if(usuario!=null) {
+			vistaBloqueo.ocultarPestana();
+			vistaPremium.habilitar();
+		}else {
+			vistaBloqueo.contrasenaErronea();
+		}
+	}
 	
 }

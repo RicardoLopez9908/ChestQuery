@@ -24,8 +24,8 @@ public class Vista {
 	private JFrame window;
 	private PanelPersonalizado panel;
 	private JLabel lblUsuario;
-	private JLabel lblContraseña;
-	private JPasswordField txtContraseña; 
+	private JLabel lblContrasena;
+	private JPasswordField txtContrasena; 
 	private JTextField txtUsuario;
 	private JButton bttAceptar;
 	JLabel lblContrasenaErronea;
@@ -69,13 +69,13 @@ public class Vista {
 		gbc_Usuario.gridy = 1;
 		panel.add(lblUsuario, gbc_Usuario);
 		
-		lblContraseña = new JLabel("Contraseña:");
-		lblContraseña.setFont(new Font("dialog", 1, 16));
+		lblContrasena = new JLabel("Contraseña:");
+		lblContrasena.setFont(new Font("dialog", 1, 16));
 		GridBagConstraints gbc_Contraseña = new GridBagConstraints();
 		gbc_Contraseña.anchor = GridBagConstraints.EAST;
 		gbc_Contraseña.gridx = 1;
 		gbc_Contraseña.gridy = 3;
-		panel.add(lblContraseña, gbc_Contraseña);
+		panel.add(lblContrasena, gbc_Contraseña);
 
 		lblContrasenaErronea = new JLabel("Datos incorrectos");
 		lblContrasenaErronea.setForeground(Color.RED);
@@ -87,13 +87,13 @@ public class Vista {
 		
 		// ------------------------COMPLETAR FORMULARIO-------------------------
 
-		txtContraseña = new JPasswordField();
-		txtContraseña.setFont(new Font("dialog", 1, 12));
-		txtContraseña.setColumns(10);
-		GridBagConstraints gbc_txtContraseña = new GridBagConstraints();
-		gbc_txtContraseña.gridx = 3;
-		gbc_txtContraseña.gridy = 3;
-		panel.add(txtContraseña, gbc_txtContraseña);
+		txtContrasena = new JPasswordField();
+		txtContrasena.setFont(new Font("dialog", 1, 12));
+		txtContrasena.setColumns(10);
+		GridBagConstraints gbc_txtContrasena = new GridBagConstraints();
+		gbc_txtContrasena.gridx = 3;
+		gbc_txtContrasena.gridy = 3;
+		panel.add(txtContrasena, gbc_txtContrasena);
 
 		txtUsuario = new JTextField();
 		txtUsuario.setFont(new Font("dialog", 1, 12));
@@ -113,14 +113,14 @@ public class Vista {
 		bttAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (txtUsuario.getText() != null) {
-					controlador.iniciarSesion(txtUsuario.getText(), txtContraseña.getText());
+					controlador.iniciarSesion(txtUsuario.getText(), txtContrasena.getText());
 				}
 			}
 		});
 	}
 	
 	public void contrasenaErronea() {
-		txtContraseña.setText("");
+		txtContrasena.setText("");
 		txtUsuario.setText("");
 		lblContrasenaErronea.setVisible(true);
 	}

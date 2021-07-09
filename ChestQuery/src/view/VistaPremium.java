@@ -165,8 +165,12 @@ public class VistaPremium {
 
 		mnAjustes.add(item1);
 
-		JMenuItem item2 = new JMenuItem("2");
-		mnAjustes.add(item2);
+		JMenuItem itemBloqueo = new JMenuItem("Bloquear pantalla");
+		itemBloqueo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controlador.bloquearPantalla();
+			}
+		});mnAjustes.add(itemBloqueo);
 
 		JMenuItem item3 = new JMenuItem("3");
 		mnAjustes.add(item3);
