@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -73,24 +74,7 @@ public class VistaPremium {
 		CardLayout cd_panel_2 = new CardLayout();
 		panel_2.setLayout(cd_panel_2);
 		panel.setRightComponent(panel_2);
-
-		/*
-		pnl_inventario = new TabbedPaneInventario();
-		panel_2.add(pnl_inventario);
-
-		pnl_clientes = new TabbedPaneClientes();
-		panel_2.add(pnl_clientes);
-
-		pnl_proveedores = new TabbedPaneProveedores();
-		panel_2.add(pnl_proveedores);
-
-		pnl_usuarios = new TabbedPaneUsuarios();
-		panel_2.add(pnl_usuarios);
-
-		pnl_indefinido = new TabbedPaneIndefinido();
-		panel_2.add(pnl_indefinido);
-*/
-	}
+}
 
 	private void asignarPanelPrincipal(JTabbedPane panel) {
 		panel_2.removeAll();
