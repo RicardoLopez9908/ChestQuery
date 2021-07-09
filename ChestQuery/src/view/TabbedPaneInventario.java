@@ -24,7 +24,7 @@ public class TabbedPaneInventario extends JTabbedPane{
 	private JPanel pnl_consultarArticulo;
 	
 	//-------------------------------------------------
-	private static Font FUENTE = new Font("dialog", 4, 20);
+	private static Font FUENTE = new Font("dialog", 4, 18);
 	
 	
 	public TabbedPaneInventario() {

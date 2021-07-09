@@ -153,8 +153,8 @@ public class VistaPremium {
 		JMenuBar menuBar = new JMenuBar();
 		window.setJMenuBar(menuBar);
 
-		JMenu mnArchivo = new JMenu("Ajustes");
-		menuBar.add(mnArchivo);
+		JMenu mnAjustes = new JMenu("Ajustes");
+		menuBar.add(mnAjustes);
 
 		JMenuItem item1 = new JMenuItem("Personalizar fondo");
 		item1.addActionListener(new ActionListener() {
@@ -163,16 +163,25 @@ public class VistaPremium {
 			}
 		});
 
-		mnArchivo.add(item1);
+		mnAjustes.add(item1);
 
 		JMenuItem item2 = new JMenuItem("2");
-		mnArchivo.add(item2);
+		mnAjustes.add(item2);
 
 		JMenuItem item3 = new JMenuItem("3");
-		mnArchivo.add(item3);
+		mnAjustes.add(item3);
 
 		JMenu mnAyuda = new JMenu("Ayuda");
 		menuBar.add(mnAyuda);
+		
+		JMenuItem itemContacto = new JMenuItem("Contacto");
+		itemContacto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controlador.contacto();
+			}
+		});
+		mnAyuda.add(itemContacto);
+
 
 	}
 

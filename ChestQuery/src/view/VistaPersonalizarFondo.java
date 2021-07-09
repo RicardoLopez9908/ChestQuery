@@ -38,7 +38,7 @@ public class VistaPersonalizarFondo {
 		window.setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource(IMAGEN_ICONO)));
 		this.window.setSize(ANCHO, ALTO);
 		this.window.setLocationRelativeTo(null);
-		this.window.setDefaultCloseOperation(0); // Para definir EXIT_ON_CLOSE
+		this.window.setDefaultCloseOperation(0); 
 		this.window.setResizable(false);
 		this.panel = new JPanel();
 		this.window.setContentPane(panel);

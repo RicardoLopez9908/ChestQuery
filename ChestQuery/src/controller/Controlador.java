@@ -3,6 +3,7 @@ package controller;
 import model.Modelo;
 import model.Usuario;
 import view.Vista;
+import view.VistaContacto;
 import view.VistaPersonalizarFondo;
 import view.VistaPremium;
 
@@ -13,6 +14,7 @@ public class Controlador {
 	private Vista vista;
 	private VistaPremium vistaPremium;
 	private Usuario usuarioAceptado;
+	private VistaContacto vistaContacto;
 	
 	public Controlador(Modelo modelo, Vista vista) {
 		this.modelo = modelo;
@@ -57,4 +59,11 @@ public class Controlador {
 		vistaPremium.actualizarFondo(diseño);
 	}
 
+	public void contacto() {
+		vistaPremium.deshabilitar();
+		vistaContacto = new VistaContacto(vistaPremium);
+		vistaContacto.ejecutar();		
+	}
+	
+	
 }
