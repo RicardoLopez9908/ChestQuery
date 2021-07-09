@@ -1,0 +1,19 @@
+#modificamos diseno de a(Usuario4)
+#Thu Jul 08 22:52:33 ART 2021
+Usuario1=Ricardo
+Usuario1Contrasena=perro
+Usuario1Diseno=5
+Usuario2Diseno=3
+Usuario4=a
+CantidadUsuarios=4
+Usuario3=Nazarena
+Usuario2=Pedro
+Usuario2Contrasena=picapiedra
+Usuario1NivelDeAcceso=PREMIUM
+Usuario2NivelDeAcceso=PREMIUM
+Usuario3NivelDeAcceso=PREMIUM
+Usuario4NivelDeAcceso=PREMIUM
+Usuario4Diseno=5
+Usuario3Diseno=4
+Usuario3Contrasena=pepe
+Usuario4Contrasena=a
