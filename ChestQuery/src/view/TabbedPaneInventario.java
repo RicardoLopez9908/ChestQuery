@@ -6,12 +6,17 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.text.ParseException;
 
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
 public class TabbedPaneInventario extends JTabbedPane{
 
@@ -90,6 +95,13 @@ public class TabbedPaneInventario extends JTabbedPane{
 		pnl_centroAgregarArticulo.add(lbl_codigo,gbc_codigo);
 		
 		JTextField txt_codigo = new JTextField();
+		txt_codigo.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if(!Character.isDigit(c)) {
+					e.consume();}
+			}
+		});
 		txt_codigo.setFont(FUENTE);
 		txt_codigo.setColumns(15);
 		GridBagConstraints gbc_txtCodigo = new GridBagConstraints();
@@ -108,6 +120,13 @@ public class TabbedPaneInventario extends JTabbedPane{
 		pnl_centroAgregarArticulo.add(lbl_cantidad,gbc_cantidad);
 		
 		JTextField txt_cantidad = new JTextField();
+		txt_cantidad.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if(!Character.isDigit(c)) {
+					e.consume();}
+			}
+		});
 		txt_cantidad.setFont(FUENTE);
 		txt_cantidad.setColumns(15);
 		GridBagConstraints gbc_txtCantidad = new GridBagConstraints();
@@ -143,7 +162,13 @@ public class TabbedPaneInventario extends JTabbedPane{
 		gbc_vencimiento.gridy = 5;
 		pnl_centroAgregarArticulo.add(lbl_vencimiento,gbc_vencimiento);
 		
-		JTextField txt_vencimiento = new JTextField();
+		JFormattedTextField txt_vencimiento = null;
+		try {
+			MaskFormatter formatter = new MaskFormatter("## / ## / ####");
+			txt_vencimiento = new JFormattedTextField(formatter);
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
 		txt_vencimiento.setFont(FUENTE);
 		txt_vencimiento.setColumns(15);
 		GridBagConstraints gbc_txtVencimiento = new GridBagConstraints();
@@ -198,7 +223,7 @@ public class TabbedPaneInventario extends JTabbedPane{
 				txt_codigo.setText("");
 				txt_cantidad.setText("");
 				txt_detalle.setText("");
-				txt_vencimiento.setText("");
+				//txt_vencimiento.setValue(txt_vencimiento);
 				txt_posicion.setText("");
 				txt_proveedor.setText("");
 			}
