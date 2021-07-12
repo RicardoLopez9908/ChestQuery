@@ -28,6 +28,7 @@ public class TabbedPaneInventario extends JTabbedPane{
 	private JPanel pnl_eliminarArticulo;
 	private JPanel pnl_consultarArticulo;
 	
+	private JFormattedTextField txt_vencimiento;
 	//-------------------------------------------------
 	private static Font FUENTE = new Font("dialog", 4, 18);
 	
@@ -162,7 +163,7 @@ public class TabbedPaneInventario extends JTabbedPane{
 		gbc_vencimiento.gridy = 5;
 		pnl_centroAgregarArticulo.add(lbl_vencimiento,gbc_vencimiento);
 		
-		JFormattedTextField txt_vencimiento = null;
+		txt_vencimiento = null;
 		try {
 			MaskFormatter formatter = new MaskFormatter("## / ## / ####");
 			txt_vencimiento = new JFormattedTextField(formatter);
@@ -211,6 +212,8 @@ public class TabbedPaneInventario extends JTabbedPane{
 		pnl_centroAgregarArticulo.add(txt_proveedor,gbc_txtProveedor);
 		
 		
+		
+		
 		//SUR:
 		JButton btn_cancelar = new JButton("Cancelar");
 		GridBagConstraints gbc_cancelar = new GridBagConstraints();
@@ -221,9 +224,9 @@ public class TabbedPaneInventario extends JTabbedPane{
 			public void actionPerformed(ActionEvent e) {
 				txt_nombre.setText("");
 				txt_codigo.setText("");
+				txt_vencimiento.setText("");
 				txt_cantidad.setText("");
 				txt_detalle.setText("");
-				//txt_vencimiento.setValue(txt_vencimiento);
 				txt_posicion.setText("");
 				txt_proveedor.setText("");
 			}
@@ -251,6 +254,9 @@ public class TabbedPaneInventario extends JTabbedPane{
 		
 		
 	}
+	
+	
+	
 	
 	public void mostrar() {
 		this.setVisible(true);
