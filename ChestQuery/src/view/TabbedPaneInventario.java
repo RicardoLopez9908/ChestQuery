@@ -26,6 +26,11 @@ public class TabbedPaneInventario extends JTabbedPane{
 	private JPanel pnl_surAgregarArticulo;
 	
 	private JPanel pnl_eliminarArticulo;
+	private JPanel pnl_norteEliminarArticulo;
+	private JPanel pnl_centroEliminarArticulo;
+	private JPanel pnl_surEliminarArticulo;
+	
+	
 	private JPanel pnl_consultarArticulo;
 	
 	private JFormattedTextField txt_vencimiento;
@@ -34,7 +39,7 @@ public class TabbedPaneInventario extends JTabbedPane{
 	
 	
 	public TabbedPaneInventario() {
-		this.agregarComponentes();
+		this.componentesAgregarArticulo();
 		this.agregarPaneles();
 	}
 	
@@ -47,7 +52,7 @@ public class TabbedPaneInventario extends JTabbedPane{
 
 	}
 	
-	private void agregarComponentes() {
+	private void componentesAgregarArticulo() {
 	
 		//--------------AGREGAR ARTICULO--------------------
 		pnl_agregarArticulo = new JPanel(new BorderLayout());
@@ -241,20 +246,50 @@ public class TabbedPaneInventario extends JTabbedPane{
 		pnl_surAgregarArticulo.add(btn_agregar,gbc_agregar);
 		
 		
-		
-		
+	}
+	
+	
+	
+	private void componentesEliminarArticulos() {
 		//--------------ELIMINAR ARTICULO--------------------
 		
-		pnl_eliminarArticulo = new JPanel();
+		pnl_eliminarArticulo = new JPanel(new BorderLayout());
+		
+		GridBagLayout gbl_norteEliminarArticulo = new GridBagLayout();
+		gbl_norteEliminarArticulo.columnWidths = new int[] { 0, 0, 40, 0, 0 };	//COLUMNAS
+		gbl_norteEliminarArticulo.rowHeights = new int[] { 0, 0,70 };		//FILAS
+		pnl_norteEliminarArticulo = new JPanel(gbl_norteEliminarArticulo);
 		
 		
-		//--------------ACCONSULTAR ARTICULO--------------------
+		GridBagLayout gbl_centroEliminarArticulo = new GridBagLayout();
+		gbl_centroEliminarArticulo.columnWidths = new int[] { 0, 100, 70, 100, 0 };	//COLUMNAS
+		gbl_centroEliminarArticulo.rowHeights = new int[] { 0, 70, 70, 70, 70, 70, 70,70, 0 };		//FILAS
+		pnl_centroEliminarArticulo = new JPanel(gbl_centroEliminarArticulo);
 		
-		pnl_consultarArticulo = new JPanel();
+		
+		GridBagLayout gbl_surEliminarArticulo = new GridBagLayout();
+		gbl_surEliminarArticulo.columnWidths = new int[] { 0, 0, 40, 0, 0 };	//COLUMNAS
+		gbl_surEliminarArticulo.rowHeights = new int[] { 0, 0,70 };		//FILAS
+		pnl_surEliminarArticulo = new JPanel(gbl_surEliminarArticulo);
+		
+		pnl_eliminarArticulo.add(pnl_norteEliminarArticulo,BorderLayout.NORTH);
+		pnl_eliminarArticulo.add(pnl_centroEliminarArticulo,BorderLayout.CENTER);
+		pnl_eliminarArticulo.add(pnl_surEliminarArticulo,BorderLayout.SOUTH);
+		
 		
 		
 	}
 	
+	
+	private void componentesConsultarArticulo() {
+
+		//--------------CONSULTAR ARTICULO--------------------
+		
+		pnl_consultarArticulo = new JPanel();
+		
+		
+		
+	}
 	
 	
 	

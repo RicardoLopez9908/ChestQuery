@@ -1,5 +1,5 @@
 #modificamos diseno de a(Usuario4)
-#Mon Jul 12 15:43:46 ART 2021
+#Mon Jul 12 23:38:22 ART 2021
 Usuario1=Ricardo
 Usuario1Contrasena=perro
 Usuario1Diseno=5
@@ -13,7 +13,7 @@ Usuario1NivelDeAcceso=PREMIUM
 Usuario2NivelDeAcceso=PREMIUM
 Usuario3NivelDeAcceso=PREMIUM
 Usuario4NivelDeAcceso=PREMIUM
-Usuario4Diseno=1
+Usuario4Diseno=0
 Usuario3Diseno=1
 Usuario3Contrasena=pepe
 Usuario4Contrasena=a
