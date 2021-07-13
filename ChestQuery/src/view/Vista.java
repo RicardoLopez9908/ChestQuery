@@ -7,6 +7,8 @@ import java.awt.GridBagLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -93,6 +95,13 @@ public class Vista {
 		GridBagConstraints gbc_txtContrasena = new GridBagConstraints();
 		gbc_txtContrasena.gridx = 3;
 		gbc_txtContrasena.gridy = 3;
+		txtContrasena.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if(Character.isLowerCase(c)) {
+					e.setKeyChar(Character.toUpperCase(c));}
+			}
+		});
 		panel.add(txtContrasena, gbc_txtContrasena);
 
 		txtUsuario = new JTextField();
@@ -101,6 +110,13 @@ public class Vista {
 		GridBagConstraints gbc_txtUsuario = new GridBagConstraints();
 		gbc_txtUsuario.gridx = 3;
 		gbc_txtUsuario.gridy = 1;
+		txtUsuario.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if(Character.isLowerCase(c)) {
+					e.setKeyChar(Character.toUpperCase(c));}
+			}
+		});
 		panel.add(txtUsuario, gbc_txtUsuario);
 
 		// -----------------------------BOTONES----------------------------------

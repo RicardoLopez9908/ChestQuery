@@ -88,6 +88,13 @@ public class TabbedPaneInventario extends JTabbedPane{
 		GridBagConstraints gbc_txtNombre = new GridBagConstraints();
 		gbc_txtNombre.gridx = 3;
 		gbc_txtNombre.gridy = 1;
+		txt_nombre.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if(Character.isLowerCase(c)) {
+					e.setKeyChar(Character.toUpperCase(c));}
+			}
+		});
 		pnl_centroAgregarArticulo.add(txt_nombre,gbc_txtNombre);
 		
 		
@@ -156,6 +163,13 @@ public class TabbedPaneInventario extends JTabbedPane{
 		GridBagConstraints gbc_txtDetalle = new GridBagConstraints();
 		gbc_txtDetalle.gridx = 3;
 		gbc_txtDetalle.gridy = 4;
+		txt_detalle.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if(Character.isLowerCase(c)) {
+					e.setKeyChar(Character.toUpperCase(c));}
+			}
+		});
 		pnl_centroAgregarArticulo.add(txt_detalle,gbc_txtDetalle);
 		
 		
@@ -214,7 +228,13 @@ public class TabbedPaneInventario extends JTabbedPane{
 		GridBagConstraints gbc_txtProveedor = new GridBagConstraints();
 		gbc_txtProveedor.gridx = 3;
 		gbc_txtProveedor.gridy = 7;
-		pnl_centroAgregarArticulo.add(txt_proveedor,gbc_txtProveedor);
+		txt_proveedor.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if(Character.isLowerCase(c)) {
+					e.setKeyChar(Character.toUpperCase(c));}
+			}
+		});pnl_centroAgregarArticulo.add(txt_proveedor,gbc_txtProveedor);
 		
 		
 		
