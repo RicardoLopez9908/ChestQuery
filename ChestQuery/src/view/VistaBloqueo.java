@@ -6,6 +6,8 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -65,6 +67,14 @@ public class VistaBloqueo {
 		
 		txt_contrasena = new JPasswordField();
 		txt_contrasena.setFont(new Font("dialog",3,18));
+		txt_contrasena.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (Character.isLowerCase(c)) {
+					e.setKeyChar(Character.toUpperCase(c));
+				}
+			}
+		});
 		panel.add(txt_contrasena);
 		
 		

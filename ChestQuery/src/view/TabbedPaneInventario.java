@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
 import java.text.ParseException;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -91,6 +92,9 @@ public class TabbedPaneInventario extends JTabbedPane {
 	private JFormattedTextField txt_vencimiento;
 	// -------------------------------------------------
 	private static Font FUENTE = new Font("dialog", 4, 18);
+	String[] columnasTablaArticulos = new String[] { "Codigo", "Nombre", "Posición", "Cantidad", "Proveedor","Vencimiento", "Detalle" };
+
+	
 
 	public TabbedPaneInventario() {
 		this.componentesAgregarArticulo();
@@ -319,7 +323,7 @@ public class TabbedPaneInventario extends JTabbedPane {
 		pnl_eliminarArticulo = new JPanel(new BorderLayout());
 
 		GridBagLayout gbl_norteEliminarArticulo = new GridBagLayout();
-		gbl_norteEliminarArticulo.columnWidths = new int[] { 0, 0, 40, 0, 0 }; // COLUMNAS
+		gbl_norteEliminarArticulo.columnWidths = new int[] { 0, 40, 0, 40, 0 }; // COLUMNAS
 		gbl_norteEliminarArticulo.rowHeights = new int[] { 70, 0, 70 }; // FILAS
 		pnl_norteEliminarArticulo = new JPanel(gbl_norteEliminarArticulo);
 
@@ -337,9 +341,17 @@ public class TabbedPaneInventario extends JTabbedPane {
 
 		// -----------------NORTE----------------------------
 
+		JComboBox<String> columnasArticulo = new JComboBox<String>(columnasTablaArticulos);
+		columnasArticulo.setFont(FUENTE);
+		GridBagConstraints gbc_columnaArticulo = new GridBagConstraints();
+		gbc_columnaArticulo.gridx = 0;
+		gbc_columnaArticulo.gridy = 1;
+		pnl_norteEliminarArticulo.add(columnasArticulo,gbc_columnaArticulo);
+		
+		
 		JTextField txt_articuloBuscado = new JTextField();
 		GridBagConstraints gbc_articuloBuscado = new GridBagConstraints();
-		gbc_articuloBuscado.gridx = 1;
+		gbc_articuloBuscado.gridx = 2;
 		gbc_articuloBuscado.gridy = 1;
 		txt_articuloBuscado.setColumns(20);
 		txt_articuloBuscado.setFont(FUENTE);
@@ -355,9 +367,103 @@ public class TabbedPaneInventario extends JTabbedPane {
 
 		JButton btn_buscar = new JButton("Buscar");
 		GridBagConstraints gbc_buscar = new GridBagConstraints();
-		gbc_buscar.gridx = 3;
+		gbc_buscar.gridx = 4;
 		gbc_buscar.gridy = 1;
 		pnl_norteEliminarArticulo.add(btn_buscar, gbc_buscar);
+
+		// -----------------CENTRO---------------------------
+
+
+		JTable tablaArticulos = new JTable(datosTablaArticulos, columnasTablaArticulos) {
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		tablaArticulos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+	
+		
+		TableColumnModel columnModel = tablaArticulos.getColumnModel();
+		
+		columnModel.getColumn(0).setPreferredWidth(130);  	//codigo
+		columnModel.getColumn(1).setPreferredWidth(300);	//nombre
+		columnModel.getColumn(2).setPreferredWidth(100);	//posición
+		columnModel.getColumn(3).setPreferredWidth(75);		//cantidad
+		columnModel.getColumn(4).setPreferredWidth(200);	//proveedor
+		columnModel.getColumn(5).setPreferredWidth(100);	//vencimiento
+		columnModel.getColumn(6).setPreferredWidth(550);	//detalle
+
+		
+		JScrollPane scp_tablaArticulos = new JScrollPane(tablaArticulos,
+				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		
+		
+		pnl_centroEliminarArticulo.add(scp_tablaArticulos);
+
+		
+		// -----------------SUR------------------------------
+
+		JButton btn_borrar = new JButton("Borrar");
+		GridBagConstraints gbc_borrar = new GridBagConstraints();
+		gbc_borrar.gridx = 3;
+		gbc_borrar.gridy = 1;
+		pnl_surEliminarArticulo.add(btn_borrar, gbc_borrar);
+
+	}
+
+	private void componentesConsultarArticulo() {
+		// --------------ELIMINAR ARTICULO--------------------
+
+		pnl_consultarArticulo = new JPanel(new BorderLayout());
+
+		GridBagLayout gbl_norteConsultarArticulo = new GridBagLayout();
+		gbl_norteConsultarArticulo.columnWidths = new int[] { 0, 40, 0, 40, 0 }; // COLUMNAS
+		gbl_norteConsultarArticulo.rowHeights = new int[] { 70, 0, 70 }; // FILAS
+		pnl_norteConsultarArticulo = new JPanel(gbl_norteConsultarArticulo);
+
+		BorderLayout bl_centroConsultarArticulo = new BorderLayout();
+		pnl_centroConsultarArticulo = new JPanel(bl_centroConsultarArticulo);
+
+		GridBagLayout gbl_surConsultarArticulo = new GridBagLayout();
+		gbl_surConsultarArticulo.columnWidths = new int[] { 0, 0, 40, 0, 0 }; // COLUMNAS
+		gbl_surConsultarArticulo.rowHeights = new int[] { 40, 0, 40 }; // FILAS
+		pnl_surConsultarArticulo = new JPanel(gbl_surConsultarArticulo);
+
+		pnl_consultarArticulo.add(pnl_norteConsultarArticulo, BorderLayout.NORTH);
+		pnl_consultarArticulo.add(pnl_centroConsultarArticulo, BorderLayout.CENTER);
+		pnl_consultarArticulo.add(pnl_surConsultarArticulo, BorderLayout.SOUTH);
+
+		// -----------------NORTE----------------------------
+
+		JComboBox<String> columnasArticulo = new JComboBox<String>(columnasTablaArticulos);
+		columnasArticulo.setFont(FUENTE);
+		GridBagConstraints gbc_columnaArticulo = new GridBagConstraints();
+		gbc_columnaArticulo.gridx = 0;
+		gbc_columnaArticulo.gridy = 1;
+		pnl_norteConsultarArticulo.add(columnasArticulo,gbc_columnaArticulo);
+		
+		
+		
+		JTextField txt_articuloBuscado = new JTextField();
+		GridBagConstraints gbc_articuloBuscado = new GridBagConstraints();
+		gbc_articuloBuscado.gridx = 2;
+		gbc_articuloBuscado.gridy = 1;
+		txt_articuloBuscado.setColumns(20);
+		txt_articuloBuscado.setFont(FUENTE);
+		txt_articuloBuscado.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (Character.isLowerCase(c)) {
+					e.setKeyChar(Character.toUpperCase(c));
+				}
+			}
+		});
+		pnl_norteConsultarArticulo.add(txt_articuloBuscado, gbc_articuloBuscado);
+
+		JButton btn_buscar = new JButton("Buscar");
+		GridBagConstraints gbc_buscar = new GridBagConstraints();
+		gbc_buscar.gridx = 4;
+		gbc_buscar.gridy = 1;
+		pnl_norteConsultarArticulo.add(btn_buscar, gbc_buscar);
 
 		// -----------------CENTRO---------------------------
 
@@ -380,20 +486,16 @@ public class TabbedPaneInventario extends JTabbedPane {
 		
 		JScrollPane scp_tablaArticulos = new JScrollPane(tablaArticulos,
 				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		pnl_centroEliminarArticulo.add(scp_tablaArticulos);
+		pnl_centroConsultarArticulo.add(scp_tablaArticulos);
 
 		
 		// -----------------SUR------------------------------
 
-		JButton btn_borrar = new JButton("Borrar");
-		GridBagConstraints gbc_borrar = new GridBagConstraints();
-		gbc_borrar.gridx = 3;
-		gbc_borrar.gridy = 1;
-		pnl_surEliminarArticulo.add(btn_borrar, gbc_borrar);
-
-	}
-
-	private void componentesConsultarArticulo() {
+		JButton btn_actualizar = new JButton("Actualizar");
+		GridBagConstraints gbc_actualizar = new GridBagConstraints();
+		gbc_actualizar.gridx = 3;
+		gbc_actualizar.gridy = 1;
+		pnl_surConsultarArticulo.add(btn_actualizar, gbc_actualizar);
 
 	}
 
