@@ -366,8 +366,9 @@ public class TabbedPaneInventario extends JTabbedPane {
 
 		JTable tablaArticulos = new JTable(datosTablaArticulos, columnasTablaArticulos);
 		tablaArticulos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		
 		TableColumnModel columnModel = tablaArticulos.getColumnModel();
-
+		
 		columnModel.getColumn(0).setPreferredWidth(130);  	//codigo
 		columnModel.getColumn(1).setPreferredWidth(300);	//nombre
 		columnModel.getColumn(2).setPreferredWidth(100);	//posición
