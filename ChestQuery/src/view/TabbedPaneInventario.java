@@ -14,74 +14,128 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.table.TableColumnModel;
 import javax.swing.text.MaskFormatter;
 
-public class TabbedPaneInventario extends JTabbedPane{
+public class TabbedPaneInventario extends JTabbedPane {
 
-	
 	private JPanel pnl_agregarArticulo;
 	private JPanel pnl_centroAgregarArticulo;
 	private JPanel pnl_surAgregarArticulo;
-	
+
 	private JPanel pnl_eliminarArticulo;
 	private JPanel pnl_norteEliminarArticulo;
 	private JPanel pnl_centroEliminarArticulo;
+	private String datosTablaArticulos[][] = new String[][] {
+			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
+					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
+			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
+					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
+			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
+					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
+			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
+					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
+			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
+					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
+			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
+					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
+			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
+					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
+			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
+					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
+			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
+					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
+			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
+					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
+			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
+					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
+			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
+					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
+			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
+					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
+			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
+					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
+			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
+					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
+			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
+					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
+			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
+					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
+			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
+					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
+			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
+					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
+			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
+					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
+			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
+					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
+			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
+					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
+			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
+					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
+	
+	};
+
 	private JPanel pnl_surEliminarArticulo;
-	
-	
+
 	private JPanel pnl_consultarArticulo;
-	
+	private JPanel pnl_norteConsultarArticulo;
+	private JPanel pnl_centroConsultarArticulo;
+	private JPanel pnl_surConsultarArticulo;
+
 	private JFormattedTextField txt_vencimiento;
-	//-------------------------------------------------
+	// -------------------------------------------------
 	private static Font FUENTE = new Font("dialog", 4, 18);
-	
-	
+
 	public TabbedPaneInventario() {
 		this.componentesAgregarArticulo();
+		this.componentesEliminarArticulos();
+		this.componentesConsultarArticulo();
 		this.agregarPaneles();
 	}
-	
+
 	private void agregarPaneles() {
-		this.addTab("Agregar articulo",pnl_agregarArticulo);
+		this.addTab("Agregar articulo", pnl_agregarArticulo);
 
-		this.addTab("Eliminar articulo",pnl_eliminarArticulo);
+		this.addTab("Eliminar articulo", pnl_eliminarArticulo);
 
-		this.addTab("Consultar articulo",pnl_consultarArticulo);
+		this.addTab("Consultar articulo", pnl_consultarArticulo);
 
 	}
-	
+
 	private void componentesAgregarArticulo() {
-	
-		//--------------AGREGAR ARTICULO--------------------
+
+		// --------------AGREGAR ARTICULO--------------------
 		pnl_agregarArticulo = new JPanel(new BorderLayout());
-		
+
 		GridBagLayout gbl_centroAgregarArticulo = new GridBagLayout();
-		gbl_centroAgregarArticulo.columnWidths = new int[] { 0, 100, 70, 100, 0 };	//COLUMNAS
-		gbl_centroAgregarArticulo.rowHeights = new int[] { 0, 70, 70, 70, 70, 70, 70,70, 0 };		//FILAS
+		gbl_centroAgregarArticulo.columnWidths = new int[] { 0, 100, 70, 100, 0 }; // COLUMNAS
+		gbl_centroAgregarArticulo.rowHeights = new int[] { 0, 70, 70, 70, 70, 70, 70, 70, 0 }; // FILAS
 		pnl_centroAgregarArticulo = new JPanel(gbl_centroAgregarArticulo);
-		
-		
+
 		GridBagLayout gbl_surAgregarArticulo = new GridBagLayout();
-		gbl_surAgregarArticulo.columnWidths = new int[] { 0, 0, 40, 0, 0 };	//COLUMNAS
-		gbl_surAgregarArticulo.rowHeights = new int[] { 0, 0,70 };		//FILAS
+		gbl_surAgregarArticulo.columnWidths = new int[] { 0, 0, 40, 0, 0 }; // COLUMNAS
+		gbl_surAgregarArticulo.rowHeights = new int[] { 0, 0, 70 }; // FILAS
 		pnl_surAgregarArticulo = new JPanel(gbl_surAgregarArticulo);
-		
-		pnl_agregarArticulo.add(pnl_centroAgregarArticulo,BorderLayout.CENTER);
-		pnl_agregarArticulo.add(pnl_surAgregarArticulo,BorderLayout.SOUTH);
-		
-		
-		//CENTRO:
-		
+
+		pnl_agregarArticulo.add(pnl_centroAgregarArticulo, BorderLayout.CENTER);
+		pnl_agregarArticulo.add(pnl_surAgregarArticulo, BorderLayout.SOUTH);
+
+		// CENTRO:
+
 		JLabel lbl_nombre = new JLabel("Nombre:");
 		lbl_nombre.setFont(FUENTE);
 		GridBagConstraints gbc_nombre = new GridBagConstraints();
 		gbc_nombre.anchor = GridBagConstraints.EAST;
 		gbc_nombre.gridx = 1;
 		gbc_nombre.gridy = 1;
-		pnl_centroAgregarArticulo.add(lbl_nombre,gbc_nombre);
-		
+		pnl_centroAgregarArticulo.add(lbl_nombre, gbc_nombre);
+
 		JTextField txt_nombre = new JTextField();
 		txt_nombre.setFont(FUENTE);
 		txt_nombre.setColumns(15);
@@ -91,28 +145,28 @@ public class TabbedPaneInventario extends JTabbedPane{
 		txt_nombre.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if(Character.isLowerCase(c)) {
-					e.setKeyChar(Character.toUpperCase(c));}
+				if (Character.isLowerCase(c)) {
+					e.setKeyChar(Character.toUpperCase(c));
+				}
 			}
 		});
-		pnl_centroAgregarArticulo.add(txt_nombre,gbc_txtNombre);
-		
-		
-		
+		pnl_centroAgregarArticulo.add(txt_nombre, gbc_txtNombre);
+
 		JLabel lbl_codigo = new JLabel("Codigo:");
 		lbl_codigo.setFont(FUENTE);
 		GridBagConstraints gbc_codigo = new GridBagConstraints();
 		gbc_codigo.anchor = GridBagConstraints.EAST;
 		gbc_codigo.gridx = 1;
 		gbc_codigo.gridy = 2;
-		pnl_centroAgregarArticulo.add(lbl_codigo,gbc_codigo);
-		
+		pnl_centroAgregarArticulo.add(lbl_codigo, gbc_codigo);
+
 		JTextField txt_codigo = new JTextField();
 		txt_codigo.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if(!Character.isDigit(c)) {
-					e.consume();}
+				if (!Character.isDigit(c)) {
+					e.consume();
+				}
 			}
 		});
 		txt_codigo.setFont(FUENTE);
@@ -120,24 +174,23 @@ public class TabbedPaneInventario extends JTabbedPane{
 		GridBagConstraints gbc_txtCodigo = new GridBagConstraints();
 		gbc_txtCodigo.gridx = 3;
 		gbc_txtCodigo.gridy = 2;
-		pnl_centroAgregarArticulo.add(txt_codigo,gbc_txtCodigo);
-		
-		
-		
+		pnl_centroAgregarArticulo.add(txt_codigo, gbc_txtCodigo);
+
 		JLabel lbl_cantidad = new JLabel("Cantidad:");
 		lbl_cantidad.setFont(FUENTE);
 		GridBagConstraints gbc_cantidad = new GridBagConstraints();
 		gbc_cantidad.anchor = GridBagConstraints.EAST;
 		gbc_cantidad.gridx = 1;
 		gbc_cantidad.gridy = 3;
-		pnl_centroAgregarArticulo.add(lbl_cantidad,gbc_cantidad);
-		
+		pnl_centroAgregarArticulo.add(lbl_cantidad, gbc_cantidad);
+
 		JTextField txt_cantidad = new JTextField();
 		txt_cantidad.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if(!Character.isDigit(c)) {
-					e.consume();}
+				if (!Character.isDigit(c)) {
+					e.consume();
+				}
 			}
 		});
 		txt_cantidad.setFont(FUENTE);
@@ -145,18 +198,16 @@ public class TabbedPaneInventario extends JTabbedPane{
 		GridBagConstraints gbc_txtCantidad = new GridBagConstraints();
 		gbc_txtCantidad.gridx = 3;
 		gbc_txtCantidad.gridy = 3;
-		pnl_centroAgregarArticulo.add(txt_cantidad,gbc_txtCantidad);
-		
-		
-		
+		pnl_centroAgregarArticulo.add(txt_cantidad, gbc_txtCantidad);
+
 		JLabel lbl_detalle = new JLabel("Detalle:");
 		lbl_detalle.setFont(FUENTE);
 		GridBagConstraints gbc_detalle = new GridBagConstraints();
 		gbc_detalle.anchor = GridBagConstraints.EAST;
 		gbc_detalle.gridx = 1;
 		gbc_detalle.gridy = 4;
-		pnl_centroAgregarArticulo.add(lbl_detalle,gbc_detalle);
-		
+		pnl_centroAgregarArticulo.add(lbl_detalle, gbc_detalle);
+
 		JTextField txt_detalle = new JTextField();
 		txt_detalle.setFont(FUENTE);
 		txt_detalle.setColumns(15);
@@ -166,22 +217,21 @@ public class TabbedPaneInventario extends JTabbedPane{
 		txt_detalle.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if(Character.isLowerCase(c)) {
-					e.setKeyChar(Character.toUpperCase(c));}
+				if (Character.isLowerCase(c)) {
+					e.setKeyChar(Character.toUpperCase(c));
+				}
 			}
 		});
-		pnl_centroAgregarArticulo.add(txt_detalle,gbc_txtDetalle);
-		
-		
-		
+		pnl_centroAgregarArticulo.add(txt_detalle, gbc_txtDetalle);
+
 		JLabel lbl_vencimiento = new JLabel("Vencimiento:");
 		lbl_vencimiento.setFont(FUENTE);
 		GridBagConstraints gbc_vencimiento = new GridBagConstraints();
 		gbc_vencimiento.anchor = GridBagConstraints.EAST;
 		gbc_vencimiento.gridx = 1;
 		gbc_vencimiento.gridy = 5;
-		pnl_centroAgregarArticulo.add(lbl_vencimiento,gbc_vencimiento);
-		
+		pnl_centroAgregarArticulo.add(lbl_vencimiento, gbc_vencimiento);
+
 		txt_vencimiento = null;
 		try {
 			MaskFormatter formatter = new MaskFormatter("## / ## / ####");
@@ -194,34 +244,32 @@ public class TabbedPaneInventario extends JTabbedPane{
 		GridBagConstraints gbc_txtVencimiento = new GridBagConstraints();
 		gbc_txtVencimiento.gridx = 3;
 		gbc_txtVencimiento.gridy = 5;
-		pnl_centroAgregarArticulo.add(txt_vencimiento,gbc_txtVencimiento);
-		
-		
+		pnl_centroAgregarArticulo.add(txt_vencimiento, gbc_txtVencimiento);
+
 		JLabel lbl_posicion = new JLabel("Posición:");
 		lbl_posicion.setFont(FUENTE);
 		GridBagConstraints gbc_posicion = new GridBagConstraints();
 		gbc_posicion.anchor = GridBagConstraints.EAST;
 		gbc_posicion.gridx = 1;
 		gbc_posicion.gridy = 6;
-		pnl_centroAgregarArticulo.add(lbl_posicion,gbc_posicion);
-		
+		pnl_centroAgregarArticulo.add(lbl_posicion, gbc_posicion);
+
 		JTextField txt_posicion = new JTextField();
 		txt_posicion.setFont(FUENTE);
 		txt_posicion.setColumns(15);
 		GridBagConstraints gbc_txtPosicion = new GridBagConstraints();
 		gbc_txtPosicion.gridx = 3;
 		gbc_txtPosicion.gridy = 6;
-		pnl_centroAgregarArticulo.add(txt_posicion,gbc_txtPosicion);
-		
-		
+		pnl_centroAgregarArticulo.add(txt_posicion, gbc_txtPosicion);
+
 		JLabel lbl_proveedor = new JLabel("Proveedor:");
 		lbl_proveedor.setFont(FUENTE);
 		GridBagConstraints gbc_proveedor = new GridBagConstraints();
 		gbc_proveedor.anchor = GridBagConstraints.EAST;
 		gbc_proveedor.gridx = 1;
 		gbc_proveedor.gridy = 7;
-		pnl_centroAgregarArticulo.add(lbl_proveedor,gbc_proveedor);
-		
+		pnl_centroAgregarArticulo.add(lbl_proveedor, gbc_proveedor);
+
 		JTextField txt_proveedor = new JTextField();
 		txt_proveedor.setFont(FUENTE);
 		txt_proveedor.setColumns(15);
@@ -231,15 +279,14 @@ public class TabbedPaneInventario extends JTabbedPane{
 		txt_proveedor.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if(Character.isLowerCase(c)) {
-					e.setKeyChar(Character.toUpperCase(c));}
+				if (Character.isLowerCase(c)) {
+					e.setKeyChar(Character.toUpperCase(c));
+				}
 			}
-		});pnl_centroAgregarArticulo.add(txt_proveedor,gbc_txtProveedor);
-		
-		
-		
-		
-		//SUR:
+		});
+		pnl_centroAgregarArticulo.add(txt_proveedor, gbc_txtProveedor);
+
+		// SUR:
 		JButton btn_cancelar = new JButton("Cancelar");
 		GridBagConstraints gbc_cancelar = new GridBagConstraints();
 		gbc_cancelar.anchor = GridBagConstraints.EAST;
@@ -256,70 +303,106 @@ public class TabbedPaneInventario extends JTabbedPane{
 				txt_proveedor.setText("");
 			}
 		});
-		pnl_surAgregarArticulo.add(btn_cancelar,gbc_cancelar);
-		
-		
+		pnl_surAgregarArticulo.add(btn_cancelar, gbc_cancelar);
+
 		JButton btn_agregar = new JButton("Agregar");
 		GridBagConstraints gbc_agregar = new GridBagConstraints();
 		gbc_agregar.gridx = 3;
 		gbc_agregar.gridy = 1;
-		pnl_surAgregarArticulo.add(btn_agregar,gbc_agregar);
-		
-		
+		pnl_surAgregarArticulo.add(btn_agregar, gbc_agregar);
+
 	}
-	
-	
-	
+
 	private void componentesEliminarArticulos() {
-		//--------------ELIMINAR ARTICULO--------------------
-		
+		// --------------ELIMINAR ARTICULO--------------------
+
 		pnl_eliminarArticulo = new JPanel(new BorderLayout());
-		
+
 		GridBagLayout gbl_norteEliminarArticulo = new GridBagLayout();
-		gbl_norteEliminarArticulo.columnWidths = new int[] { 0, 0, 40, 0, 0 };	//COLUMNAS
-		gbl_norteEliminarArticulo.rowHeights = new int[] { 0, 0,70 };		//FILAS
+		gbl_norteEliminarArticulo.columnWidths = new int[] { 0, 0, 40, 0, 0 }; // COLUMNAS
+		gbl_norteEliminarArticulo.rowHeights = new int[] { 70, 0, 70 }; // FILAS
 		pnl_norteEliminarArticulo = new JPanel(gbl_norteEliminarArticulo);
-		
-		
-		GridBagLayout gbl_centroEliminarArticulo = new GridBagLayout();
-		gbl_centroEliminarArticulo.columnWidths = new int[] { 0, 100, 70, 100, 0 };	//COLUMNAS
-		gbl_centroEliminarArticulo.rowHeights = new int[] { 0, 70, 70, 70, 70, 70, 70,70, 0 };		//FILAS
-		pnl_centroEliminarArticulo = new JPanel(gbl_centroEliminarArticulo);
-		
-		
+
+		BorderLayout bl_centroEliminarArticulo = new BorderLayout();
+		pnl_centroEliminarArticulo = new JPanel(bl_centroEliminarArticulo);
+
 		GridBagLayout gbl_surEliminarArticulo = new GridBagLayout();
-		gbl_surEliminarArticulo.columnWidths = new int[] { 0, 0, 40, 0, 0 };	//COLUMNAS
-		gbl_surEliminarArticulo.rowHeights = new int[] { 0, 0,70 };		//FILAS
+		gbl_surEliminarArticulo.columnWidths = new int[] { 0, 0, 40, 0, 0 }; // COLUMNAS
+		gbl_surEliminarArticulo.rowHeights = new int[] { 40, 0, 40 }; // FILAS
 		pnl_surEliminarArticulo = new JPanel(gbl_surEliminarArticulo);
+
+		pnl_eliminarArticulo.add(pnl_norteEliminarArticulo, BorderLayout.NORTH);
+		pnl_eliminarArticulo.add(pnl_centroEliminarArticulo, BorderLayout.CENTER);
+		pnl_eliminarArticulo.add(pnl_surEliminarArticulo, BorderLayout.SOUTH);
+
+		// -----------------NORTE----------------------------
+
+		JTextField txt_articuloBuscado = new JTextField();
+		GridBagConstraints gbc_articuloBuscado = new GridBagConstraints();
+		gbc_articuloBuscado.gridx = 1;
+		gbc_articuloBuscado.gridy = 1;
+		txt_articuloBuscado.setColumns(20);
+		txt_articuloBuscado.setFont(FUENTE);
+		txt_articuloBuscado.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (Character.isLowerCase(c)) {
+					e.setKeyChar(Character.toUpperCase(c));
+				}
+			}
+		});
+		pnl_norteEliminarArticulo.add(txt_articuloBuscado, gbc_articuloBuscado);
+
+		JButton btn_buscar = new JButton("Buscar");
+		GridBagConstraints gbc_buscar = new GridBagConstraints();
+		gbc_buscar.gridx = 3;
+		gbc_buscar.gridy = 1;
+		pnl_norteEliminarArticulo.add(btn_buscar, gbc_buscar);
+
+		// -----------------CENTRO---------------------------
+
+		String[] columnasTablaArticulos = new String[] { "Codigo", "Nombre", "Posición", "Cantidad", "Proveedor",
+				"Vencimiento", "Detalle" };
+
+		JTable tablaArticulos = new JTable(datosTablaArticulos, columnasTablaArticulos);
+		tablaArticulos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		TableColumnModel columnModel = tablaArticulos.getColumnModel();
+
+		columnModel.getColumn(0).setPreferredWidth(130);  	//codigo
+		columnModel.getColumn(1).setPreferredWidth(300);	//nombre
+		columnModel.getColumn(2).setPreferredWidth(100);	//posición
+		columnModel.getColumn(3).setPreferredWidth(75);		//cantidad
+		columnModel.getColumn(4).setPreferredWidth(200);	//proveedor
+		columnModel.getColumn(5).setPreferredWidth(100);	//vencimiento
+		columnModel.getColumn(6).setPreferredWidth(550);	//detalle
+
 		
-		pnl_eliminarArticulo.add(pnl_norteEliminarArticulo,BorderLayout.NORTH);
-		pnl_eliminarArticulo.add(pnl_centroEliminarArticulo,BorderLayout.CENTER);
-		pnl_eliminarArticulo.add(pnl_surEliminarArticulo,BorderLayout.SOUTH);
+		JScrollPane scp_tablaArticulos = new JScrollPane(tablaArticulos,
+				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		pnl_centroEliminarArticulo.add(scp_tablaArticulos);
+
 		
-		
-		
+		// -----------------SUR------------------------------
+
+		JButton btn_borrar = new JButton("Borrar");
+		GridBagConstraints gbc_borrar = new GridBagConstraints();
+		gbc_borrar.gridx = 3;
+		gbc_borrar.gridy = 1;
+		pnl_surEliminarArticulo.add(btn_borrar, gbc_borrar);
+
 	}
-	
-	
+
 	private void componentesConsultarArticulo() {
 
-		//--------------CONSULTAR ARTICULO--------------------
-		
-		pnl_consultarArticulo = new JPanel();
-		
-		
-		
 	}
-	
-	
-	
+
 	public void mostrar() {
 		this.setVisible(true);
 	}
-	
+
 	public void ocultar() {
 		this.disable();
 		this.setVisible(false);
 	}
-	
+
 }
