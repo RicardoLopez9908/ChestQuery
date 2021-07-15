@@ -2,7 +2,10 @@ package model;
 
 import java.util.ArrayList;
 
+import javax.swing.table.TableModel;
+
 import dao.DAO;
+import view.TabbedPaneUsuarios;
 import view.Vista;
 import view.VistaPremium;
 
@@ -45,23 +48,21 @@ public class Modelo {
 		int i = 0;
 		Categoria nivelDeAcceso;
 		for (Usuario usuario : usuarios) {
-			lista[i][0] = usuario.getNumeroDeUsuario() + "";
-			
-			lista[i][1] = usuario.getNombre();
-			lista[i][2] = usuario.getContrasena(); 
+			lista[i][0] = usuario.getNombre();
+			lista[i][1] = usuario.getContrasena(); 
 			nivelDeAcceso = usuario.getNivelDeAcceso();
 			switch (nivelDeAcceso) {
 			case DEFAULT:
-				lista[i][3] = "DEFAULT"; 
+				lista[i][2] = "DEFAULT"; 
 				break;
 			case MEDIUM:
-				lista[i][3] = "MEDIUM"; 
+				lista[i][2] = "MEDIUM"; 
 				break;
 			case PREMIUM:
-				lista[i][3] = "PREMIUM"; 
+				lista[i][2] = "PREMIUM"; 
 				break;
 			}
-			lista[i][4] = usuario.getDiseño() + ""; 
+			lista[i][3] = usuario.getDiseño() + ""; 
 			
 			i++;
 
@@ -72,7 +73,10 @@ public class Modelo {
 
 	public void borrarUsuario(int numeroDeUsuario) {
 		dao.borrarUsuario(numeroDeUsuario);
+		usuarios.clear();
 		dao.actualizarInformacion();
 	}
+	
+	
 
 }

@@ -8,11 +8,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
@@ -20,11 +20,10 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 import controller.Controlador;
+import model.Modelo;
 
 public class TabbedPaneUsuarios extends JTabbedPane {
 
@@ -39,6 +38,7 @@ public class TabbedPaneUsuarios extends JTabbedPane {
 	private JPanel pnl_norteEliminarUsuario;
 	private JPanel pnl_centroEliminarUsuario;
 	private String datosTablaUsuarios[][];
+	DefaultTableModel modeloTablaUsuarios;
 	private JPanel pnl_surEliminarUsuario;
 
 	private JPanel pnl_consultarUsuario;
@@ -46,10 +46,9 @@ public class TabbedPaneUsuarios extends JTabbedPane {
 	private JPanel pnl_centroConsultarUsuario;
 	private JPanel pnl_surConsultarUsuario;
 
-	private JTable tablaUsuarios;
 	// -------------------------------------------------
 	private static Font FUENTE = new Font("dialog", 4, 18);
-	private String[] columnasTablaUsuarios = new String[] { "Nº de usuario","Nombre", "Contraseña", "Nivel de acceso","Diseño" };
+	private String[] columnasTablaUsuarios = new String[] {"Nombre", "Contraseña", "Nivel de acceso","Diseño" };
 	private String[] nivelesDeAcceso = new String[] { "DEFAULT", "MEDIUM", "PREMIUM" };
 
 	
@@ -61,6 +60,7 @@ public class TabbedPaneUsuarios extends JTabbedPane {
 		this.agregarPaneles();
 	}
 
+	
 	private void agregarPaneles() {
 		this.addTab("Agregar usuario", pnl_agregarUsuario);
 
@@ -230,28 +230,33 @@ public class TabbedPaneUsuarios extends JTabbedPane {
 
 		// -----------------CENTRO---------------------------
 		datosTablaUsuarios = controlador.getDatosTablaUsuarios();
-		DefaultTableModel modeloTablaUsuarios = new DefaultTableModel();
+		modeloTablaUsuarios = new DefaultTableModel();
 		modeloTablaUsuarios.setDataVector(datosTablaUsuarios, columnasTablaUsuarios);
-		modeloTablaUsuarios.fireTableDataChanged();
-		tablaUsuarios = new JTable(modeloTablaUsuarios);
-		
+		JTable tablaUsuarios = new JTable(modeloTablaUsuarios);
 		tablaUsuarios.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 
-		JScrollPane scp_tablaArticulos = new JScrollPane(tablaUsuarios,
-				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-
+		JScrollPane scp_tablaArticulos = new JScrollPane();
+		scp_tablaArticulos.setViewportView(tablaUsuarios);
+		
 		pnl_centroEliminarUsuario.add(scp_tablaArticulos);
+						
 
 		// -----------------SUR------------------------------
 
 		JButton btn_borrar = new JButton("Borrar");
 		btn_borrar.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(tablaUsuarios.getSelectedRow()!= -1) {
-					controlador.borrarUsuario(Integer.parseInt((String)tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 0)));
-					modeloTablaUsuarios.removeRow(tablaUsuarios.getSelectedRow());
+					if(controlador.borrarUsuario(tablaUsuarios.getSelectedRow())) {
+						modeloTablaUsuarios.removeRow(tablaUsuarios.getSelectedRow());
+					}
+					else {
+						JOptionPane.showMessageDialog(null,"No se puede eliminar el mismo usuario que el actual","ChestQuery",1);
+					}
+				}
+				else{
+					JOptionPane.showMessageDialog(null,"Por favor, seleccione una fila" ,"ChestQuery",1);
 				}
 			}
 		});

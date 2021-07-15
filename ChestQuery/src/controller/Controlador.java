@@ -1,7 +1,10 @@
 package controller;
 
+import javax.swing.table.TableModel;
+
 import model.Modelo;
 import model.Usuario;
+import view.TabbedPaneUsuarios;
 import view.Vista;
 import view.VistaBloqueo;
 import view.VistaContacto;
@@ -87,8 +90,12 @@ public class Controlador {
 		return modelo.getUsuarios();
 	}
 
-	public void borrarUsuario(int numeroDeUsuario) {
-		modelo.borrarUsuario(numeroDeUsuario);
+	public boolean borrarUsuario(int numeroDeUsuario) {
+		if(numeroDeUsuario != usuarioAceptado.getNumeroDeUsuario()) {
+			modelo.borrarUsuario(numeroDeUsuario);			
+			return true;
+		}
+			return false;
 	}
 	
 	
