@@ -248,7 +248,7 @@ public class TabbedPaneUsuarios extends JTabbedPane {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(tablaUsuarios.getSelectedRow()!= -1) {
-					if(controlador.borrarUsuario(tablaUsuarios.getSelectedRow())) {
+					if(controlador.borrarUsuario(tablaUsuarios.getSelectedRow()+1)) {
 						modeloTablaUsuarios.removeRow(tablaUsuarios.getSelectedRow());
 					}
 					else {
