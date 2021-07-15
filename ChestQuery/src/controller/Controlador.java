@@ -82,5 +82,14 @@ public class Controlador {
 			vistaBloqueo.contrasenaErronea();
 		}
 	}
+
+	public String[][] getDatosTablaUsuarios(){
+		return modelo.getUsuarios();
+	}
+
+	public void borrarUsuario(int numeroDeUsuario) {
+		modelo.borrarUsuario(numeroDeUsuario);
+	}
+	
 	
 }

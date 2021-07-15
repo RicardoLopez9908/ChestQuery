@@ -130,7 +130,7 @@ public class VistaPremium {
 		boton4.setContentAreaFilled(false);
 		boton4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TabbedPaneUsuarios nuevoPanel = new TabbedPaneUsuarios(); 
+				TabbedPaneUsuarios nuevoPanel = new TabbedPaneUsuarios(controlador);
 				asignarPanelPrincipal(nuevoPanel);
 			}
 		});

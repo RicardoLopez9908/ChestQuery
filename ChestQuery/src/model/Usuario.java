@@ -33,6 +33,10 @@ public class Usuario {
 		return this.nivelDeAcceso;
 	}
 	
+	public String getContrasena() {
+		return this.contraseña;
+	}
+	
 	public String getNombre() {
 		return this.nombre;
 	}

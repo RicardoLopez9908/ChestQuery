@@ -1,5 +1,5 @@
 #modificamos diseno de A(Usuario4)
-#Wed Jul 14 17:21:17 ART 2021
+#Wed Jul 14 20:29:35 ART 2021
 Usuario1=RICARDO
 Usuario1Contrasena=PERRO
 Usuario1Diseno=5
