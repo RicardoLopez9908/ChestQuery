@@ -2,6 +2,7 @@ package controller;
 
 import javax.swing.table.TableModel;
 
+import model.Categoria;
 import model.Modelo;
 import model.Usuario;
 import view.TabbedPaneUsuarios;
@@ -55,10 +56,10 @@ public class Controlador {
 		vistaPersonalizarFondo.ejecutar();
 	}
 
-	public void seleccionarFondo(int diseño) {
-		modelo.modificarDiseño(usuarioAceptado,diseño);
+	public void seleccionarFondo(int diseno) {
+		modelo.modificarDiseno(usuarioAceptado,diseno);
 		vistaPremium.habilitar();
-		vistaPremium.actualizarFondo(diseño);
+		vistaPremium.actualizarFondo(diseno);
 	}
 
 	public void contacto() {
@@ -107,5 +108,26 @@ public class Controlador {
 		}
 		
 	}
+	
+	public boolean actualizarUsuarioCompleto(int numeroDeUsuario,String nombre,String contrasena,String nivelDeAcceso, int diseno) {
+		Categoria nivel = null;
+		switch(nivelDeAcceso) {
+		case "DEFAULT":
+			nivel = Categoria.DEFAULT;
+			break;
+		case "MEDIUM":
+			nivel = Categoria.MEDIUM;
+			break;
+		case "PREMIUM":
+			nivel = Categoria.PREMIUM;
+			break;
+		}
+		if(modelo.actualizarUsuarioCompleto(numeroDeUsuario, nombre, contrasena, nivel, diseno)) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
 	
 }

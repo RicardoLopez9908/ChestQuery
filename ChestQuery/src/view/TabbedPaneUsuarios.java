@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -22,6 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import javax.swing.text.MaskFormatter;
 
 import controller.Controlador;
 
@@ -38,13 +40,13 @@ public class TabbedPaneUsuarios extends JTabbedPane {
 	private JPanel pnl_centroEliminarUsuario;
 	private String datosTablaUsuarios[][];
 	private DefaultTableModel modeloTablaUsuarios;
-	private TableRowSorter<DefaultTableModel> filtroTablaUsuarios;
 	private JPanel pnl_surEliminarUsuario;
 
 	private JPanel pnl_consultarUsuario;
 	private JPanel pnl_norteConsultarUsuario;
 	private JPanel pnl_centroConsultarUsuario;
 	private JPanel pnl_surConsultarUsuario;
+	private int numeroDeUsuarioParaModificar = -1;
 
 	// -------------------------------------------------
 	private static Font FUENTE = new Font("dialog", 4, 18);
@@ -180,7 +182,7 @@ public class TabbedPaneUsuarios extends JTabbedPane {
 						txt_nivelDeAcceso.setSelectedIndex(0);
 					} else
 						JOptionPane.showMessageDialog(null, "El nombre de usuario ya ha sido ocupado", "ChestQuery", 1);
-						
+
 				} else
 					JOptionPane.showMessageDialog(null, "Por favor, ingrese el nombre", "ChestQuery", 1);
 
@@ -244,16 +246,7 @@ public class TabbedPaneUsuarios extends JTabbedPane {
 		GridBagConstraints gbc_buscar = new GridBagConstraints();
 		gbc_buscar.gridx = 4;
 		gbc_buscar.gridy = 1;
-		btn_buscar.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if ((columnasUsuario.getSelectedIndex() != -1) && (txt_usuarioBuscado.getText() != null)) {
-					filtroTablaUsuarios.setRowFilter(
-							RowFilter.regexFilter(txt_usuarioBuscado.getText(), columnasUsuario.getSelectedIndex()));
 
-				}
-			}
-		});
 		pnl_norteEliminarUsuario.add(btn_buscar, gbc_buscar);
 
 		// -----------------CENTRO---------------------------
@@ -269,8 +262,20 @@ public class TabbedPaneUsuarios extends JTabbedPane {
 		};
 
 		tablaUsuarios.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-		filtroTablaUsuarios = new TableRowSorter<DefaultTableModel>(modeloTablaUsuarios);
+		TableRowSorter<DefaultTableModel> filtroTablaUsuarios = new TableRowSorter<DefaultTableModel>(
+				modeloTablaUsuarios);
 		tablaUsuarios.setRowSorter(filtroTablaUsuarios);
+
+		btn_buscar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if ((columnasUsuario.getSelectedIndex() != -1) && (txt_usuarioBuscado.getText() != null)) {
+					filtroTablaUsuarios.setRowFilter(
+							RowFilter.regexFilter(txt_usuarioBuscado.getText(), columnasUsuario.getSelectedIndex()));
+
+				}
+			}
+		});
 
 		JScrollPane scp_tablaArticulos = new JScrollPane();
 		scp_tablaArticulos.setViewportView(tablaUsuarios);
@@ -319,7 +324,7 @@ public class TabbedPaneUsuarios extends JTabbedPane {
 
 		GridBagLayout gbl_surConsultarUsuario = new GridBagLayout();
 		gbl_surConsultarUsuario.columnWidths = new int[] { 5, 0, 20, 0, 20, 0, 150, 0, 5 }; // COLUMNAS
-		gbl_surConsultarUsuario.rowHeights = new int[] { 100, 0, 20, 0, 20, 0, 20, 0, 30  }; // FILAS
+		gbl_surConsultarUsuario.rowHeights = new int[] { 100, 0, 20, 0, 20, 0, 20, 0, 30 }; // FILAS
 		pnl_surConsultarUsuario = new JPanel(gbl_surConsultarUsuario);
 
 		pnl_consultarUsuario.add(pnl_norteConsultarUsuario, BorderLayout.NORTH);
@@ -355,31 +360,46 @@ public class TabbedPaneUsuarios extends JTabbedPane {
 		GridBagConstraints gbc_buscar = new GridBagConstraints();
 		gbc_buscar.gridx = 4;
 		gbc_buscar.gridy = 1;
+
+		pnl_norteEliminarUsuario.add(btn_buscar, gbc_buscar);
+
 		pnl_norteConsultarUsuario.add(btn_buscar, gbc_buscar);
 
 		// -----------------CENTRO---------------------------
 
-		
-		
-		JTable tablaUsuarios = new JTable(modeloTablaUsuarios);
+		JTable tablaUsuarios = new JTable(modeloTablaUsuarios) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		TableRowSorter<DefaultTableModel> filtroTablaUsuarios2 = new TableRowSorter<DefaultTableModel>(
+				modeloTablaUsuarios);
+		tablaUsuarios.setRowSorter(filtroTablaUsuarios2);
 		tablaUsuarios.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+		btn_buscar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (columnasUsuario.getSelectedIndex() != -1) {
+					filtroTablaUsuarios2.setRowFilter(
+							RowFilter.regexFilter(txt_usuarioBuscado.getText(), columnasUsuario.getSelectedIndex()));
 
-		
-		
+				}
+			}
+		});
+
 		JScrollPane scp_tablaArticulos = new JScrollPane(tablaUsuarios);
 
-		pnl_centroConsultarUsuario.add(scp_tablaArticulos,BorderLayout.CENTER);
+		pnl_centroConsultarUsuario.add(scp_tablaArticulos, BorderLayout.CENTER);
 
 		// -----------------SUR------------------------------
 
-		
-		
 		JLabel lbl_nombre = new JLabel("Nombre:");
 		lbl_nombre.setFont(FUENTE);
 		GridBagConstraints gbc_nombre = new GridBagConstraints();
 		gbc_nombre.anchor = GridBagConstraints.EAST;
 		gbc_nombre.gridx = 1;
-		gbc_nombre.gridy = 1;
+		gbc_nombre.gridy = 3;
 		pnl_surConsultarUsuario.add(lbl_nombre, gbc_nombre);
 
 		JTextField txt_nombre = new JTextField();
@@ -387,7 +407,7 @@ public class TabbedPaneUsuarios extends JTabbedPane {
 		txt_nombre.setColumns(15);
 		GridBagConstraints gbc_txtNombre = new GridBagConstraints();
 		gbc_txtNombre.gridx = 3;
-		gbc_txtNombre.gridy = 1;
+		gbc_txtNombre.gridy = 3;
 		txt_nombre.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -403,7 +423,7 @@ public class TabbedPaneUsuarios extends JTabbedPane {
 		GridBagConstraints gbc_contrasena = new GridBagConstraints();
 		gbc_contrasena.anchor = GridBagConstraints.EAST;
 		gbc_contrasena.gridx = 1;
-		gbc_contrasena.gridy = 3;
+		gbc_contrasena.gridy = 5;
 		pnl_surConsultarUsuario.add(lbl_contrasena, gbc_contrasena);
 
 		JTextField txt_contrasena = new JTextField();
@@ -411,7 +431,7 @@ public class TabbedPaneUsuarios extends JTabbedPane {
 		txt_contrasena.setColumns(15);
 		GridBagConstraints gbc_txtContrasena = new GridBagConstraints();
 		gbc_txtContrasena.gridx = 3;
-		gbc_txtContrasena.gridy = 3;
+		gbc_txtContrasena.gridy = 5;
 		txt_contrasena.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -427,23 +447,14 @@ public class TabbedPaneUsuarios extends JTabbedPane {
 		GridBagConstraints gbc_nivelDeAcceso = new GridBagConstraints();
 		gbc_nivelDeAcceso.anchor = GridBagConstraints.EAST;
 		gbc_nivelDeAcceso.gridx = 1;
-		gbc_nivelDeAcceso.gridy = 5;
+		gbc_nivelDeAcceso.gridy = 1;
 		pnl_surConsultarUsuario.add(lbl_nivelDeAcceso, gbc_nivelDeAcceso);
 
-		JTextField txt_nivelDeAcceso = new JTextField();
+		JComboBox<String> txt_nivelDeAcceso = new JComboBox<String>(nivelesDeAcceso);
 		txt_nivelDeAcceso.setFont(FUENTE);
-		txt_nivelDeAcceso.setColumns(15);
 		GridBagConstraints gbc_txtNivelDeAcceso = new GridBagConstraints();
 		gbc_txtNivelDeAcceso.gridx = 3;
-		gbc_txtNivelDeAcceso.gridy = 5;
-		txt_nivelDeAcceso.addKeyListener(new KeyAdapter() {
-			public void keyTyped(KeyEvent e) {
-				char c = e.getKeyChar();
-				if (Character.isLowerCase(c)) {
-					e.setKeyChar(Character.toUpperCase(c));
-				}
-			}
-		});
+		gbc_txtNivelDeAcceso.gridy = 1;
 		pnl_surConsultarUsuario.add(txt_nivelDeAcceso, gbc_txtNivelDeAcceso);
 
 		JLabel lbl_diseno = new JLabel("Diseño:");
@@ -454,7 +465,15 @@ public class TabbedPaneUsuarios extends JTabbedPane {
 		gbc_diseno.gridy = 7;
 		pnl_surConsultarUsuario.add(lbl_diseno, gbc_diseno);
 
-		JTextField txt_diseno = new JTextField();
+		
+		MaskFormatter mascara = null;
+		try{
+		   mascara = new MaskFormatter("#");
+		}catch (Exception e)
+		{
+		   e.printStackTrace();
+		}
+		JFormattedTextField txt_diseno = new JFormattedTextField(mascara);
 		txt_diseno.setFont(FUENTE);
 		txt_diseno.setColumns(15);
 		GridBagConstraints gbc_txtDiseno = new GridBagConstraints();
@@ -463,52 +482,76 @@ public class TabbedPaneUsuarios extends JTabbedPane {
 		txt_diseno.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (Character.isLowerCase(c)) {
-					e.setKeyChar(Character.toUpperCase(c));
-				}
+				if (c<'0' || c>'5') 
+					e.consume();
 			}
 		});
 		pnl_surConsultarUsuario.add(txt_diseno, gbc_txtDiseno);
 
-		
-		
 		JButton btn_actualizar = new JButton("Actualizar");
 		GridBagConstraints gbc_actualizar = new GridBagConstraints();
 		gbc_actualizar.gridx = 7;
 		gbc_actualizar.gridy = 7;
+		btn_actualizar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if ((numeroDeUsuarioParaModificar != -1)) {
+					if (!(txt_nombre.getText().equals(""))) {
+						if(controlador.actualizarUsuarioCompleto(numeroDeUsuarioParaModificar, txt_nombre.getText(),txt_contrasena.getText(), (String) txt_nivelDeAcceso.getSelectedItem(),Integer.parseInt(txt_diseno.getText()) )) {
+							actualizarDatosTabla();
+						}else
+							JOptionPane.showMessageDialog(null, "El nombre de usuario ya ha sido ocupado", "ChestQuery", 1);
+					} else
+						JOptionPane.showMessageDialog(null, "Por favor, ingrese el nombre", "ChestQuery", 1);
+				} else
+					JOptionPane.showMessageDialog(null, "Por favor, seleccione un usuario", "ChestQuery", 1);
+			}
+		});
 		pnl_surConsultarUsuario.add(btn_actualizar, gbc_actualizar);
 
-		
-		//BOTON "SELECCIONAR" DEL PANEL CENTRO
+		// BOTON "SELECCIONAR" DEL PANEL CENTRO
 
 		JButton btn_seleccionar = new JButton("Seleccionar");
 		GridBagLayout gbl_pnlExtra = new GridBagLayout();
-		gbl_pnlExtra.columnWidths = new int[] {0,0,0};
+		gbl_pnlExtra.columnWidths = new int[] { 0, 0, 0 };
 		JPanel pnlExtra = new JPanel(gbl_pnlExtra);
 		GridBagConstraints gbc_btnSeleccionar = new GridBagConstraints();
 		gbc_btnSeleccionar.gridx = 1;
-		pnlExtra.add(btn_seleccionar,gbc_btnSeleccionar);
-	/*	btn_seleccionar.addActionListener(new ActionListener() {
+		pnlExtra.add(btn_seleccionar, gbc_btnSeleccionar);
+		btn_seleccionar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (tablaUsuarios.getSelectedRow() != -1) {
-					int numeroDeUsuario=Integer.parseInt((String) tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 0));
-					
-					txt_nombre.setText();
-					
+					numeroDeUsuarioParaModificar = Integer
+							.parseInt((String) tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 0));
+
+					txt_nombre.setText((String) tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 1));
+					txt_contrasena.setText((String) tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 2));
+
+					String nivelDeAcceso = (String) tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 3);
+					switch (nivelDeAcceso) {
+					case "DEFAULT":
+						txt_nivelDeAcceso.setSelectedIndex(0);
+						break;
+					case "MEDIUM":
+						txt_nivelDeAcceso.setSelectedIndex(1);
+						break;
+					case "PREMIUM":
+						txt_nivelDeAcceso.setSelectedIndex(2);
+						break;
+					}
+
+					txt_diseno.setText((String) tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 4));
+
 				} else {
 					JOptionPane.showMessageDialog(null, "Por favor, seleccione una fila", "ChestQuery", 1);
 				}
 			}
-		});*/
-		pnl_centroConsultarUsuario.add(pnlExtra,BorderLayout.SOUTH);
+		});
+		pnl_centroConsultarUsuario.add(pnlExtra, BorderLayout.SOUTH);
 
-		
-		
 	}
-	
-	
-	
 
 	public void actualizarDatosTabla() {
 		modeloTablaUsuarios.setRowCount(0);

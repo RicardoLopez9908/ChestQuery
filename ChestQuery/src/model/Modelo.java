@@ -36,8 +36,8 @@ public class Modelo {
 		this.vista = vista;
 	}
 
-	public void modificarDiseño(Usuario usuario, int nuevoDiseño) {
-		dao.modificarDiseño(usuario.getNumeroDeUsuario(), nuevoDiseño);
+	public void modificarDiseno(Usuario usuario, int nuevoDiseño) {
+		dao.modificarDisenoUsuario(usuario.getNumeroDeUsuario(), nuevoDiseño);
 	}
 
 	public void agregarUsuarios(Usuario usuario) {
@@ -77,7 +77,9 @@ public class Modelo {
 		dao.borrarUsuario(numeroDeUsuario);
 		usuarios.clear();
 		dao.actualizarInformacion();
-		controlador.actualizarUsuarioAceptado(usuarios.get(numeroUsuarioAceptado-2));
+		if(numeroDeUsuario<numeroUsuarioAceptado) {
+			controlador.actualizarUsuarioAceptado(usuarios.get(numeroUsuarioAceptado-2));		
+		}
 	}
 	
 	public boolean agregarUsuarioDAO(String nombre, String contrasena, String nivelDeAcceso) {
@@ -91,6 +93,28 @@ public class Modelo {
 		dao.actualizarInformacion();
 		return true;
 		
+	}
+	
+	public boolean actualizarUsuarioCompleto(int numeroDeUsuario,String nombre,String contrasena,Categoria nivelDeAcceso,int diseno) {
+		if(!(usuarios.get(numeroDeUsuario-1).getNombre().equals(nombre))) {
+			for(Usuario usuario:usuarios) {
+				if(usuario.getNombre().equals(nombre)) 
+					return false;	
+			}
+			dao.modificarNombreUsuario(numeroDeUsuario, nombre);
+		}
+		if(!(usuarios.get(numeroDeUsuario-1).getContrasena().equals(contrasena))) {
+			dao.modificarContrasenaUsuario(numeroDeUsuario, contrasena);
+		}
+		if(!(usuarios.get(numeroDeUsuario-1).getNivelDeAcceso().equals(nivelDeAcceso))) {
+			dao.modificarNiveDeAccesoUsuario(numeroDeUsuario, nivelDeAcceso);	
+		}
+		if(usuarios.get(numeroDeUsuario-1).getDiseño()!=diseno) {
+			dao.modificarDisenoUsuario(numeroDeUsuario, diseno);
+		}
+		usuarios.clear();
+		dao.actualizarInformacion();
+		return true;
 	}
 	
 	

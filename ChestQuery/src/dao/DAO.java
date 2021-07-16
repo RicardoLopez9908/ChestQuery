@@ -71,19 +71,6 @@ public class DAO {
 		}
 	}
 
-	public void modificarDiseño(int numeroDeUsuario, int diseno) {
-		try {
-			usuarios.setProperty("Usuario" + numeroDeUsuario + "Diseno", String.valueOf(diseno));
-			FileOutputStream archivo = new FileOutputStream(ubicacionInformacion);
-			usuarios.store(archivo, "modificamos diseno de " + usuarios.getProperty("Usuario" + numeroDeUsuario)
-					+ "(Usuario" + numeroDeUsuario + ")");
-			archivo.close();
-
-		} catch (Exception e) {
-			System.out.println("ERROR AL ESCRIBIR EN ARCHIVO: " + ubicacionInformacion);
-			e.printStackTrace();
-		}
-	}
 
 	public void borrarUsuario(int numeroDeUsuario) {
 		try {
@@ -142,6 +129,60 @@ public class DAO {
 			e.printStackTrace();
 		}
 	}
+	
+	public void modificarNombreUsuario(int numeroDeUsuario,String nuevoNombre) {
+		try {
+			usuarios.setProperty("Usuario" + numeroDeUsuario, nuevoNombre);
+			FileOutputStream archivo = new FileOutputStream(ubicacionInformacion);
+			usuarios.store(archivo, "modificamos nombre de " + usuarios.getProperty("Usuario" + numeroDeUsuario)
+					+ "(Usuario" + numeroDeUsuario + ")");
+			archivo.close();
+
+		} catch (Exception e) {
+			System.out.println("ERROR AL ESCRIBIR EN ARCHIVO: " + ubicacionInformacion);
+			e.printStackTrace();
+		}		
+	}
+	public void modificarContrasenaUsuario(int numeroDeUsuario,String nuevaContrasena) {
+		try {
+			usuarios.setProperty("Usuario" + numeroDeUsuario + "Contrasena", nuevaContrasena);
+			FileOutputStream archivo = new FileOutputStream(ubicacionInformacion);
+			usuarios.store(archivo, "modificamos contrasena de " + usuarios.getProperty("Usuario" + numeroDeUsuario)
+					+ "(Usuario" + numeroDeUsuario + ")");
+			archivo.close();
+
+		} catch (Exception e) {
+			System.out.println("ERROR AL ESCRIBIR EN ARCHIVO: " + ubicacionInformacion);
+			e.printStackTrace();
+		}				
+	}
+	public void modificarNiveDeAccesoUsuario(int numeroDeUsuario,Categoria nuevoNivelDeAcceso) {
+		try {
+			usuarios.setProperty("Usuario" + numeroDeUsuario + "NivelDeAcceso", String.valueOf(nuevoNivelDeAcceso));
+			FileOutputStream archivo = new FileOutputStream(ubicacionInformacion);
+			usuarios.store(archivo, "modificamos nivel de acceso de " + usuarios.getProperty("Usuario" + numeroDeUsuario)
+					+ "(Usuario" + numeroDeUsuario + ")");
+			archivo.close();
+
+		} catch (Exception e) {
+			System.out.println("ERROR AL ESCRIBIR EN ARCHIVO: " + ubicacionInformacion);
+			e.printStackTrace();
+		}		
+	}
+	public void modificarDisenoUsuario(int numeroDeUsuario, int diseno) {
+		try {
+			usuarios.setProperty("Usuario" + numeroDeUsuario + "Diseno", String.valueOf(diseno));
+			FileOutputStream archivo = new FileOutputStream(ubicacionInformacion);
+			usuarios.store(archivo, "modificamos diseno de " + usuarios.getProperty("Usuario" + numeroDeUsuario)
+					+ "(Usuario" + numeroDeUsuario + ")");
+			archivo.close();
+
+		} catch (Exception e) {
+			System.out.println("ERROR AL ESCRIBIR EN ARCHIVO: " + ubicacionInformacion);
+			e.printStackTrace();
+		}
+	}
+
 	
 
 }
