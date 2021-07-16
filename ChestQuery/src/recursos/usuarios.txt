@@ -1,19 +1,35 @@
-#modificamos diseno de RICARDO(Usuario3)
-#Fri Jul 16 12:21:44 ART 2021
+#modificamos contrasena de OPERARIO2(Usuario5)
+#Fri Jul 16 16:05:50 ART 2021
 Usuario1=A
 Usuario1Contrasena=A
-Usuario1Diseno=4
-Usuario2Diseno=0
+Usuario1Diseno=0
+Usuario5=OPERARIO2
 Usuario4=ANGELES
-CantidadUsuarios=4
+CantidadUsuarios=8
 Usuario3=RICARDO
+Usuario8Diseno=0
 Usuario2=NAZARENA
-Usuario2Contrasena=1964
-Usuario1NivelDeAcceso=PREMIUM
-Usuario2NivelDeAcceso=PREMIUM
-Usuario3NivelDeAcceso=DEFAULT
+Usuario8=SUPERVISORPRODUCCION
+Usuario7=SUEPERVISORLOGISTICA
+Usuario6=OPERARIO3
+Usuario6Contrasena=NUEVO
+Usuario2NivelDeAcceso=MEDIUM
+Usuario3NivelDeAcceso=MEDIUM
 Usuario4Diseno=2
 Usuario4NivelDeAcceso=DEFAULT
-Usuario3Diseno=3
+Usuario5Contrasena=PEPE
+Usuario7NivelDeAcceso=MEDIUM
 Usuario3Contrasena=MASTER
+Usuario8Contrasena=PRODUCCION
+Usuario5NivelDeAcceso=DEFAULT
+Usuario6NivelDeAcceso=DEFAULT
+Usuario7Diseno=0
+Usuario2Diseno=0
+Usuario8NivelDeAcceso=MEDIUM
+Usuario2Contrasena=1964
+Usuario7Contrasena=LOGISTICA
+Usuario5Diseno=0
+Usuario1NivelDeAcceso=PREMIUM
+Usuario3Diseno=2
+Usuario6Diseno=0
 Usuario4Contrasena=PEPE

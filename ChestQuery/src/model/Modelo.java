@@ -5,17 +5,17 @@ import java.util.ArrayList;
 import javax.swing.table.TableModel;
 
 import controller.Controlador;
-import dao.DAO;
+import dao.DAOUsuarios;
 import view.TabbedPaneUsuarios;
 import view.Vista;
 import view.VistaPremium;
 
 public class Modelo {
 	private ArrayList<Usuario> usuarios = new ArrayList<>();
-	private DAO dao;
+	private DAOUsuarios dao;
 	private Vista vista;
 
-	public Modelo(DAO dao) {
+	public Modelo(DAOUsuarios dao) {
 		this.dao = dao;
 		this.dao.setModelo(this);
 		this.dao.actualizarInformacion();

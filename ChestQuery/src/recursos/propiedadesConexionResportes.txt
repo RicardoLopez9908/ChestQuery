@@ -1,0 +1,4 @@
+DriverJDBC=com.mysql.cj.jdbc.Driver
+UrlJDBC=jdbc:mysql://localhost:3306/Reportes?user=root&password=root
+UsuarioJDBC=root
+ClaveJDBC=root

@@ -13,7 +13,7 @@ import model.Usuario;
 *       funci�n es abstraer el acceso y manejo de datos para el resto de la
 *       aplicaci�n.
 */
-public class DAO {
+public class DAOUsuarios {
 
 	private Modelo modelo;
 
@@ -22,7 +22,7 @@ public class DAO {
 	private Properties usuarios;
 	// --------------------------------------------------------------
 
-	public DAO() {
+	public DAOUsuarios() {
 		try {
 			FileInputStream archivo = new FileInputStream(ubicacionInformacion);
 			usuarios = new Properties();

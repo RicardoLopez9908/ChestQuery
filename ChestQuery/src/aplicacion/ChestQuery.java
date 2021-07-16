@@ -2,14 +2,14 @@ package aplicacion;
 
 import javax.swing.UIManager;
 
-import dao.DAO;
+import dao.DAOUsuarios;
 import model.Modelo;
 import view.Vista;
 
 public class ChestQuery {
 	
 	public static void main(String[] args) {
-		DAO dao = new DAO();
+		DAOUsuarios dao = new DAOUsuarios();
 		Modelo modelo = new Modelo(dao);
 		Vista vista = new Vista(modelo);
 		vista.ejecutar();

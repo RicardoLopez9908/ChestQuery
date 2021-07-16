@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -11,7 +10,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -269,12 +267,12 @@ public class VistaPremium {
 	}
 
 	public void deshabilitar() {
-		window.disable();
+		window.setEnabled(false);
 		window.setVisible(false);
 	}
 
 	public void habilitar() {
-		window.enable();
+		window.setEnabled(true);
 		window.setVisible(true);
 	}
 
