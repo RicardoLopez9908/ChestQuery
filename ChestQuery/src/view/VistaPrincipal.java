@@ -20,7 +20,7 @@ import javax.swing.JTabbedPane;
 import controller.Controlador;
 import model.Usuario;
 
-public class VistaPremium {
+public class VistaPrincipal {
 
 	private Controlador controlador;
 	private JFrame window;
@@ -50,7 +50,7 @@ public class VistaPremium {
 
 	// ----------------------------------------------------------
 
-	public VistaPremium(Controlador controlador,Usuario usuarioAceptado) {
+	public VistaPrincipal(Controlador controlador,Usuario usuarioAceptado) {
 		this.controlador = controlador;
 		this.usuarioAceptado = usuarioAceptado;
 		this.controlador.agregarVistaPremium(this);

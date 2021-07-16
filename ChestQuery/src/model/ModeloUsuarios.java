@@ -2,20 +2,15 @@ package model;
 
 import java.util.ArrayList;
 
-import javax.swing.table.TableModel;
 
 import controller.Controlador;
 import dao.DAOUsuarios;
-import view.TabbedPaneUsuarios;
-import view.Vista;
-import view.VistaPremium;
 
-public class Modelo {
+public class ModeloUsuarios {
 	private ArrayList<Usuario> usuarios = new ArrayList<>();
 	private DAOUsuarios dao;
-	private Vista vista;
 
-	public Modelo(DAOUsuarios dao) {
+	public ModeloUsuarios(DAOUsuarios dao) {
 		this.dao = dao;
 		this.dao.setModelo(this);
 		this.dao.actualizarInformacion();
@@ -24,16 +19,10 @@ public class Modelo {
 	public Usuario iniciarSesion(String nombre, String contraseña) {
 		for (Usuario usuario : usuarios) {
 			if (usuario.compararNombre(nombre) && usuario.compararContraseña(contraseña)) {
-				System.out.println("USUARIO: " + usuario.getNombre());
-				System.out.println("NIVEL DE ACCESO: " + usuario.getNivelDeAcceso());
 				return usuario;
 			}
 		}
 		return null;
-	}
-
-	public void setVista(Vista vista) {
-		this.vista = vista;
 	}
 
 	public void modificarDiseno(Usuario usuario, int nuevoDiseño) {

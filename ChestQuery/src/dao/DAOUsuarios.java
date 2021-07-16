@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 import model.Categoria;
-import model.Modelo;
+import model.ModeloUsuarios;
 import model.Usuario;
 
 /* 		DAO (Data Access Object) es un patr�n de dise�o cuya
@@ -15,7 +15,7 @@ import model.Usuario;
 */
 public class DAOUsuarios {
 
-	private Modelo modelo;
+	private ModeloUsuarios modelo;
 
 	private final String ubicacionInformacion = "src/recursos/usuarios.txt";
 
@@ -33,7 +33,7 @@ public class DAOUsuarios {
 		}
 	}
 
-	public void setModelo(Modelo modelo) {
+	public void setModelo(ModeloUsuarios modelo) {
 		this.modelo = modelo;
 	}
 

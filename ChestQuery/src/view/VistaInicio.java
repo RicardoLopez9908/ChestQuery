@@ -17,12 +17,12 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import controller.Controlador;
-import model.Modelo;
+import model.ModeloUsuarios;
 
-public class Vista {
+public class VistaInicio {
 
 	private Controlador controlador;
-	private Modelo modelo;
+	private ModeloUsuarios modelo;
 	private JFrame window;
 	private PanelPersonalizado panel;
 	private JLabel lblUsuario;
@@ -40,9 +40,8 @@ public class Vista {
 	private final String IMAGEN_ICONO = "/recursos/ChestQueryIcono.jpg";
 	// --------------------------------------------------
 
-	public Vista(Modelo modelo) {
+	public VistaInicio(ModeloUsuarios modelo) {
 		this.modelo = modelo;
-		modelo.setVista(this);
 		controlador = new Controlador(modelo,this);
 		window = new JFrame(NOMBRE);
 		window.setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource(IMAGEN_ICONO)));

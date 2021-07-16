@@ -1,27 +1,26 @@
 package controller;
 
-import javax.swing.table.TableModel;
 
 import model.Categoria;
-import model.Modelo;
+import model.ModeloUsuarios;
 import model.Usuario;
-import view.Vista;
+import view.VistaInicio;
 import view.VistaBloqueo;
 import view.VistaContacto;
 import view.VistaPersonalizarFondo;
-import view.VistaPremium;
+import view.VistaPrincipal;
 
-public class Controlador {
+public class Controlador{
 
-	private Modelo modelo;
+	private ModeloUsuarios modelo;
 	private VistaPersonalizarFondo vistaPersonalizarFondo;
-	private Vista vista;
-	private VistaPremium vistaPremium;
+	private VistaInicio vista;
+	private VistaPrincipal vistaPrincipal;
 	private Usuario usuarioAceptado;
 	private VistaBloqueo vistaBloqueo;
 	private VistaContacto vistaContacto;
 	
-	public Controlador(Modelo modelo, Vista vista) {
+	public Controlador(ModeloUsuarios modelo, VistaInicio vista) {
 		this.modelo = modelo;
 		this.vista = vista;
 	}
@@ -32,10 +31,9 @@ public class Controlador {
 		usuarioAceptado = modelo.iniciarSesion(nombre, contraseña);
 		
 		if(usuarioAceptado!=null){
-			System.out.println("GENIAL!");
 			vista.ocultarPestaña();
-			vistaPremium = new VistaPremium(this,usuarioAceptado);
-			vistaPremium.ejecutar();
+			vistaPrincipal = new VistaPrincipal(this,usuarioAceptado);
+			vistaPrincipal.ejecutar();
 		}else {
 			System.out.println("NO COINCIDEN EL NOMBRE Y CONTRASEÑA INGRESADOS");
 			vista.contrasenaErronea();
@@ -44,30 +42,30 @@ public class Controlador {
 	}
 	
 
-	public void agregarVistaPremium(VistaPremium vistaPremium) {
-		this.vistaPremium = vistaPremium;
+	public void agregarVistaPremium(VistaPrincipal vistaPrincipal) {
+		this.vistaPrincipal = vistaPrincipal;
 	}
 
 	public void personalizarFondo() {
-		vistaPremium.deshabilitar();
+		vistaPrincipal.deshabilitar();
 		vistaPersonalizarFondo = new VistaPersonalizarFondo(this);
 		vistaPersonalizarFondo.ejecutar();
 	}
 
 	public void seleccionarFondo(int diseno) {
 		modelo.modificarDiseno(usuarioAceptado,diseno);
-		vistaPremium.habilitar();
-		vistaPremium.actualizarFondo(diseno);
+		vistaPrincipal.habilitar();
+		vistaPrincipal.actualizarFondo(diseno);
 	}
 
 	public void contacto() {
-		vistaPremium.deshabilitar();
-		vistaContacto = new VistaContacto(vistaPremium);
+		vistaPrincipal.deshabilitar();
+		vistaContacto = new VistaContacto(vistaPrincipal);
 		vistaContacto.ejecutar();		
 	}
 	
 	public void bloquearPantalla() {
-		vistaPremium.deshabilitar();
+		vistaPrincipal.deshabilitar();
 		vistaBloqueo = new VistaBloqueo(this);
 		vistaBloqueo.ejecutar();
 	}
@@ -76,7 +74,7 @@ public class Controlador {
 		Usuario usuario = modelo.iniciarSesion(usuarioAceptado.getNombre(), contraseña); 
 		if(usuario!=null) {
 			vistaBloqueo.ocultarPestana();
-			vistaPremium.habilitar();
+			vistaPrincipal.habilitar();
 		}else {
 			vistaBloqueo.contrasenaErronea();
 		}

@@ -17,7 +17,7 @@ public class VistaContacto {
 
 	private JFrame window;
 	private JPanel panel;
-	private VistaPremium vistaPremium;
+	private VistaPrincipal vistaPremium;
 
 	// ----------------------------------------------------
 	private final int ALTO = 200;
@@ -26,7 +26,7 @@ public class VistaContacto {
 
 	// ----------------------------------------------------
 
-	public VistaContacto(VistaPremium vistaPremium) {
+	public VistaContacto(VistaPrincipal vistaPremium) {
 		this.vistaPremium = vistaPremium;
 		this.window = new JFrame("E-mail de contacto");
 		window.setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource(IMAGEN_ICONO)));
