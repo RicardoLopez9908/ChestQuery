@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.table.TableModel;
 
+import controller.Controlador;
 import dao.DAO;
 import view.TabbedPaneUsuarios;
 import view.Vista;
@@ -42,27 +43,28 @@ public class Modelo {
 	public void agregarUsuarios(Usuario usuario) {
 		usuarios.add(usuario);
 	}
-
+	
 	public String[][] getUsuarios() {
 		String[][] lista = new String[usuarios.size()][5];
 		int i = 0;
 		Categoria nivelDeAcceso;
 		for (Usuario usuario : usuarios) {
-			lista[i][0] = usuario.getNombre();
-			lista[i][1] = usuario.getContrasena(); 
+			lista[i][0] = usuario.getNumeroDeUsuario()+"";
+			lista[i][1] = usuario.getNombre();
+			lista[i][2] = usuario.getContrasena(); 
 			nivelDeAcceso = usuario.getNivelDeAcceso();
 			switch (nivelDeAcceso) {
 			case DEFAULT:
-				lista[i][2] = "DEFAULT"; 
+				lista[i][3] = "DEFAULT"; 
 				break;
 			case MEDIUM:
-				lista[i][2] = "MEDIUM"; 
+				lista[i][3] = "MEDIUM"; 
 				break;
 			case PREMIUM:
-				lista[i][2] = "PREMIUM"; 
+				lista[i][3] = "PREMIUM"; 
 				break;
 			}
-			lista[i][3] = usuario.getDiseño() + ""; 
+			lista[i][4] = usuario.getDiseño() + ""; 
 			
 			i++;
 
@@ -71,11 +73,29 @@ public class Modelo {
 		return lista;
 	}
 
-	public void borrarUsuario(int numeroDeUsuario) {
+	public void borrarUsuario(int numeroDeUsuario, Controlador controlador, int numeroUsuarioAceptado) {
 		dao.borrarUsuario(numeroDeUsuario);
 		usuarios.clear();
 		dao.actualizarInformacion();
+		controlador.actualizarUsuarioAceptado(usuarios.get(numeroUsuarioAceptado-2));
 	}
+	
+	public boolean agregarUsuarioDAO(String nombre, String contrasena, String nivelDeAcceso) {
+		for(Usuario usuario: usuarios) {
+			if(usuario.getNombre().equals(nombre)) {
+				return false;
+			}
+		}
+		dao.agregarUsuario(nombre,contrasena,nivelDeAcceso);
+		usuarios.clear();
+		dao.actualizarInformacion();
+		return true;
+		
+	}
+	
+	
+	
+	
 	
 	
 

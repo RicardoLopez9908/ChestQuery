@@ -44,9 +44,6 @@ public class Controlador {
 	
 	}
 	
-	public void setDiseño(int diseño) {
-		
-	}
 
 	public void agregarVistaPremium(VistaPremium vistaPremium) {
 		this.vistaPremium = vistaPremium;
@@ -92,11 +89,23 @@ public class Controlador {
 
 	public boolean borrarUsuario(int numeroDeUsuario) {
 		if(numeroDeUsuario != usuarioAceptado.getNumeroDeUsuario()) {
-			modelo.borrarUsuario(numeroDeUsuario);			
+			modelo.borrarUsuario(numeroDeUsuario,this,usuarioAceptado.getNumeroDeUsuario());			
 			return true;
 		}
 			return false;
 	}
 	
+	public void actualizarUsuarioAceptado(Usuario usuarioAceptado) {
+		this.usuarioAceptado = usuarioAceptado;
+	}
+	
+	public boolean agregarUsuario(String nombre,String contrasena, String nivelDeAcceso) {
+		if(modelo.agregarUsuarioDAO(nombre, contrasena, nivelDeAcceso)) {	
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
 	
 }

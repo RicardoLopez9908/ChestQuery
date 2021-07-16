@@ -128,9 +128,8 @@ public class Vista {
 		panel.add(bttAceptar, gbc_bttAceptar);
 		bttAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (txtUsuario.getText() != null) {
-					controlador.iniciarSesion(txtUsuario.getText(), txtContrasena.getText());
-				}
+					controlador.iniciarSesion(txtUsuario.getText(), String.valueOf(txtContrasena.getPassword()));
+				
 			}
 		});
 	}

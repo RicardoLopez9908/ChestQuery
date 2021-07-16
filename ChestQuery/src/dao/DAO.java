@@ -120,5 +120,28 @@ public class DAO {
 			e.printStackTrace();
 		}
 	}
+	
+	public void agregarUsuario(String nombre, String contrasena, String nivelDeAcceso) {
+		try {
+			int cantidadUsuarios = (Integer.parseInt(usuarios.getProperty("CantidadUsuarios")) )+1;
+			
+			usuarios.setProperty("CantidadUsuarios",String.valueOf(cantidadUsuarios) );
+			
+			usuarios.setProperty("Usuario" + (cantidadUsuarios), nombre);
+			usuarios.setProperty("Usuario" + (cantidadUsuarios)+"Contrasena", contrasena);
+			usuarios.setProperty("Usuario" + (cantidadUsuarios)+"Diseno", 0 + "");
+			usuarios.setProperty("Usuario" + (cantidadUsuarios)+"NivelDeAcceso", nivelDeAcceso);
+			
+			
+			FileOutputStream archivo = new FileOutputStream(ubicacionInformacion);
+			usuarios.store(archivo, "Agregamos el usuario "+nombre+"(numero :" + cantidadUsuarios+")" );
+			archivo.close();
+
+		} catch (Exception e) {
+			System.out.println("ERROR AL ESCRIBIR EN ARCHIVO: " + ubicacionInformacion);
+			e.printStackTrace();
+		}
+	}
+	
 
 }

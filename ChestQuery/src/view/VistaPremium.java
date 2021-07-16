@@ -198,7 +198,6 @@ public class VistaPremium {
 			boton3.setForeground(Color.BLACK);
 			boton4.setForeground(Color.BLACK);
 			boton5.setForeground(Color.BLACK);
-			controlador.setDiseño(0);
 			break;
 		case 1:
 			panel_1.cambiarFondo(direccionImagenBotones1);
@@ -207,7 +206,6 @@ public class VistaPremium {
 			boton3.setForeground(Color.WHITE);
 			boton4.setForeground(Color.WHITE);
 			boton5.setForeground(Color.WHITE);
-			controlador.setDiseño(1);
 			break;
 		case 2:
 			panel_1.cambiarFondo(direccionImagenBotones2);
@@ -216,7 +214,6 @@ public class VistaPremium {
 			boton3.setForeground(Color.BLACK);
 			boton4.setForeground(Color.BLACK);
 			boton5.setForeground(Color.BLACK);
-			controlador.setDiseño(2);
 			break;
 		case 3:
 			panel_1.cambiarFondo(direccionImagenBotones3);
@@ -225,7 +222,6 @@ public class VistaPremium {
 			boton3.setForeground(Color.BLACK);
 			boton4.setForeground(Color.BLACK);
 			boton5.setForeground(Color.BLACK);
-			controlador.setDiseño(3);
 			break;
 		case 4:
 			panel_1.cambiarFondo(direccionImagenBotones4);
@@ -234,7 +230,6 @@ public class VistaPremium {
 			boton3.setForeground(Color.BLACK);
 			boton4.setForeground(Color.BLACK);
 			boton5.setForeground(Color.BLACK);
-			controlador.setDiseño(4);
 			break;
 		case 5:
 			panel_1.cambiarFondo(direccionImagenBotones5);
@@ -243,7 +238,6 @@ public class VistaPremium {
 			boton3.setForeground(Color.WHITE);
 			boton4.setForeground(Color.WHITE);
 			boton5.setForeground(Color.WHITE);
-			controlador.setDiseño(5);
 			break;
 		default:
 			break;

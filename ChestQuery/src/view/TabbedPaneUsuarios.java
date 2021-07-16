@@ -19,17 +19,16 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.ScrollPaneConstants;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 import controller.Controlador;
-import model.Modelo;
 
 public class TabbedPaneUsuarios extends JTabbedPane {
 
-	
 	private Controlador controlador;
-	
+
 	private JPanel pnl_agregarUsuario;
 	private JPanel pnl_centroAgregarUsuario;
 	private JPanel pnl_surAgregarUsuario;
@@ -38,7 +37,8 @@ public class TabbedPaneUsuarios extends JTabbedPane {
 	private JPanel pnl_norteEliminarUsuario;
 	private JPanel pnl_centroEliminarUsuario;
 	private String datosTablaUsuarios[][];
-	DefaultTableModel modeloTablaUsuarios;
+	private DefaultTableModel modeloTablaUsuarios;
+	private TableRowSorter<DefaultTableModel> filtroTablaUsuarios;
 	private JPanel pnl_surEliminarUsuario;
 
 	private JPanel pnl_consultarUsuario;
@@ -48,10 +48,10 @@ public class TabbedPaneUsuarios extends JTabbedPane {
 
 	// -------------------------------------------------
 	private static Font FUENTE = new Font("dialog", 4, 18);
-	private String[] columnasTablaUsuarios = new String[] {"Nombre", "Contraseña", "Nivel de acceso","Diseño" };
+	private String[] columnasTablaUsuarios = new String[] { "Nº de usuario", "Nombre", "Contraseña", "Nivel de acceso",
+			"Diseño" };
 	private String[] nivelesDeAcceso = new String[] { "DEFAULT", "MEDIUM", "PREMIUM" };
 
-	
 	public TabbedPaneUsuarios(Controlador controlador) {
 		this.controlador = controlador;
 		this.componentesAgregarUsuarios();
@@ -60,7 +60,6 @@ public class TabbedPaneUsuarios extends JTabbedPane {
 		this.agregarPaneles();
 	}
 
-	
 	private void agregarPaneles() {
 		this.addTab("Agregar usuario", pnl_agregarUsuario);
 
@@ -168,6 +167,25 @@ public class TabbedPaneUsuarios extends JTabbedPane {
 		pnl_surAgregarUsuario.add(btn_cancelar, gbc_cancelar);
 
 		JButton btn_agregar = new JButton("Agregar");
+		btn_agregar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (!txt_nombre.getText().isEmpty()) {
+					if (controlador.agregarUsuario(txt_nombre.getText(), String.valueOf(txt_contrasena.getPassword()),
+							(String) txt_nivelDeAcceso.getSelectedItem())) {
+						actualizarDatosTabla();
+						txt_nombre.setText("");
+						txt_contrasena.setText("");
+						txt_nivelDeAcceso.setSelectedIndex(0);
+					} else
+						JOptionPane.showMessageDialog(null, "El nombre de usuario ya ha sido ocupado", "ChestQuery", 1);
+						
+				} else
+					JOptionPane.showMessageDialog(null, "Por favor, ingrese el nombre", "ChestQuery", 1);
+
+			}
+		});
 		GridBagConstraints gbc_agregar = new GridBagConstraints();
 		gbc_agregar.gridx = 3;
 		gbc_agregar.gridy = 1;
@@ -177,7 +195,7 @@ public class TabbedPaneUsuarios extends JTabbedPane {
 
 	private void componentesEliminaUsuarios() {
 		// --------------ELIMINAR USUARIOS--------------------
-		
+
 		pnl_eliminarUsuario = new JPanel(new BorderLayout());
 
 		GridBagLayout gbl_norteEliminarUsuario = new GridBagLayout();
@@ -226,20 +244,38 @@ public class TabbedPaneUsuarios extends JTabbedPane {
 		GridBagConstraints gbc_buscar = new GridBagConstraints();
 		gbc_buscar.gridx = 4;
 		gbc_buscar.gridy = 1;
+		btn_buscar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if ((columnasUsuario.getSelectedIndex() != -1) && (txt_usuarioBuscado.getText() != null)) {
+					filtroTablaUsuarios.setRowFilter(
+							RowFilter.regexFilter(txt_usuarioBuscado.getText(), columnasUsuario.getSelectedIndex()));
+
+				}
+			}
+		});
 		pnl_norteEliminarUsuario.add(btn_buscar, gbc_buscar);
 
 		// -----------------CENTRO---------------------------
 		datosTablaUsuarios = controlador.getDatosTablaUsuarios();
 		modeloTablaUsuarios = new DefaultTableModel();
 		modeloTablaUsuarios.setDataVector(datosTablaUsuarios, columnasTablaUsuarios);
-		JTable tablaUsuarios = new JTable(modeloTablaUsuarios);
+		modeloTablaUsuarios.fireTableDataChanged();
+		JTable tablaUsuarios = new JTable(modeloTablaUsuarios) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+
 		tablaUsuarios.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+		filtroTablaUsuarios = new TableRowSorter<DefaultTableModel>(modeloTablaUsuarios);
+		tablaUsuarios.setRowSorter(filtroTablaUsuarios);
 
 		JScrollPane scp_tablaArticulos = new JScrollPane();
 		scp_tablaArticulos.setViewportView(tablaUsuarios);
-		
+
 		pnl_centroEliminarUsuario.add(scp_tablaArticulos);
-						
 
 		// -----------------SUR------------------------------
 
@@ -247,16 +283,16 @@ public class TabbedPaneUsuarios extends JTabbedPane {
 		btn_borrar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(tablaUsuarios.getSelectedRow()!= -1) {
-					if(controlador.borrarUsuario(tablaUsuarios.getSelectedRow()+1)) {
-						modeloTablaUsuarios.removeRow(tablaUsuarios.getSelectedRow());
+				if (tablaUsuarios.getSelectedRow() != -1) {
+					if (controlador.borrarUsuario(
+							Integer.parseInt((String) tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 0)))) {
+						actualizarDatosTabla();
+					} else {
+						JOptionPane.showMessageDialog(null, "No se puede eliminar el mismo usuario que el actual",
+								"ChestQuery", 1);
 					}
-					else {
-						JOptionPane.showMessageDialog(null,"No se puede eliminar el mismo usuario que el actual","ChestQuery",1);
-					}
-				}
-				else{
-					JOptionPane.showMessageDialog(null,"Por favor, seleccione una fila" ,"ChestQuery",1);
+				} else {
+					JOptionPane.showMessageDialog(null, "Por favor, seleccione una fila", "ChestQuery", 1);
 				}
 			}
 		});
@@ -270,7 +306,7 @@ public class TabbedPaneUsuarios extends JTabbedPane {
 	private void componentesConsultarUsuarios() {
 		// --------------CONSULTAR ARTICULO--------------------
 		datosTablaUsuarios = controlador.getDatosTablaUsuarios();
-		
+
 		pnl_consultarUsuario = new JPanel(new BorderLayout());
 
 		GridBagLayout gbl_norteConsultarUsuario = new GridBagLayout();
@@ -323,11 +359,10 @@ public class TabbedPaneUsuarios extends JTabbedPane {
 
 		// -----------------CENTRO---------------------------
 
-		JTable tablaUsuarios = new JTable(datosTablaUsuarios, columnasTablaUsuarios); 
+		JTable tablaUsuarios = new JTable(modeloTablaUsuarios);
 		tablaUsuarios.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 
-		JScrollPane scp_tablaArticulos = new JScrollPane(tablaUsuarios,
-				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		JScrollPane scp_tablaArticulos = new JScrollPane(tablaUsuarios);
 
 		pnl_centroConsultarUsuario.add(scp_tablaArticulos);
 
@@ -340,10 +375,12 @@ public class TabbedPaneUsuarios extends JTabbedPane {
 		pnl_surConsultarUsuario.add(btn_actualizar, gbc_actualizar);
 
 	}
-	
-	
-	private void llenarTablaUsuarios() {
-		
+
+	public void actualizarDatosTabla() {
+		modeloTablaUsuarios.setRowCount(0);
+		datosTablaUsuarios = controlador.getDatosTablaUsuarios();
+		modeloTablaUsuarios.setDataVector(datosTablaUsuarios, columnasTablaUsuarios);
+
 	}
 
 	public void mostrar() {
