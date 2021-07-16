@@ -1,23 +1,19 @@
-#Agregamos el usuario PEPEPE(numero :5)
-#Thu Jul 15 20:55:33 ART 2021
-Usuario1=RICARDO
-Usuario1Contrasena=PERRO
-Usuario1Diseno=5
-Usuario2Diseno=3
-Usuario5=PEPEPE
-Usuario4=A
-CantidadUsuarios=5
-Usuario3=NAZARENA
-Usuario2=PEDRO
-Usuario2Contrasena=PICAPIEDRA
-Usuario5Diseno=0
+#Agregamos el usuario ANGELES(numero :4)
+#Thu Jul 15 23:15:04 ART 2021
+Usuario1=A
+Usuario1Contrasena=A
+Usuario1Diseno=1
+Usuario2Diseno=0
+Usuario4=ANGELES
+CantidadUsuarios=4
+Usuario3=RICARDO
+Usuario2=NAZARENA
+Usuario2Contrasena=1964
 Usuario1NivelDeAcceso=PREMIUM
 Usuario2NivelDeAcceso=PREMIUM
-Usuario3NivelDeAcceso=PREMIUM
-Usuario4NivelDeAcceso=PREMIUM
-Usuario4Diseno=1
-Usuario5Contrasena=
-Usuario3Diseno=1
-Usuario3Contrasena=PEPE
-Usuario4Contrasena=A
-Usuario5NivelDeAcceso=DEFAULT
+Usuario3NivelDeAcceso=DEFAULT
+Usuario4Diseno=0
+Usuario4NivelDeAcceso=DEFAULT
+Usuario3Diseno=0
+Usuario3Contrasena=MASTER
+Usuario4Contrasena=

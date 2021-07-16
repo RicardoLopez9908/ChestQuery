@@ -311,15 +311,15 @@ public class TabbedPaneUsuarios extends JTabbedPane {
 
 		GridBagLayout gbl_norteConsultarUsuario = new GridBagLayout();
 		gbl_norteConsultarUsuario.columnWidths = new int[] { 0, 40, 0, 40, 0 }; // COLUMNAS
-		gbl_norteConsultarUsuario.rowHeights = new int[] { 70, 0, 70 }; // FILAS
+		gbl_norteConsultarUsuario.rowHeights = new int[] { 50, 0, 50 }; // FILAS
 		pnl_norteConsultarUsuario = new JPanel(gbl_norteConsultarUsuario);
 
 		BorderLayout bl_centroConsultarUsuario = new BorderLayout();
 		pnl_centroConsultarUsuario = new JPanel(bl_centroConsultarUsuario);
 
 		GridBagLayout gbl_surConsultarUsuario = new GridBagLayout();
-		gbl_surConsultarUsuario.columnWidths = new int[] { 0, 0, 40, 0, 0 }; // COLUMNAS
-		gbl_surConsultarUsuario.rowHeights = new int[] { 40, 0, 40 }; // FILAS
+		gbl_surConsultarUsuario.columnWidths = new int[] { 5, 0, 20, 0, 20, 0, 150, 0, 5 }; // COLUMNAS
+		gbl_surConsultarUsuario.rowHeights = new int[] { 100, 0, 20, 0, 20, 0, 20, 0, 30  }; // FILAS
 		pnl_surConsultarUsuario = new JPanel(gbl_surConsultarUsuario);
 
 		pnl_consultarUsuario.add(pnl_norteConsultarUsuario, BorderLayout.NORTH);
@@ -359,22 +359,156 @@ public class TabbedPaneUsuarios extends JTabbedPane {
 
 		// -----------------CENTRO---------------------------
 
+		
+		
 		JTable tablaUsuarios = new JTable(modeloTablaUsuarios);
 		tablaUsuarios.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 
+		
+		
 		JScrollPane scp_tablaArticulos = new JScrollPane(tablaUsuarios);
 
-		pnl_centroConsultarUsuario.add(scp_tablaArticulos);
+		pnl_centroConsultarUsuario.add(scp_tablaArticulos,BorderLayout.CENTER);
 
 		// -----------------SUR------------------------------
 
+		
+		
+		JLabel lbl_nombre = new JLabel("Nombre:");
+		lbl_nombre.setFont(FUENTE);
+		GridBagConstraints gbc_nombre = new GridBagConstraints();
+		gbc_nombre.anchor = GridBagConstraints.EAST;
+		gbc_nombre.gridx = 1;
+		gbc_nombre.gridy = 1;
+		pnl_surConsultarUsuario.add(lbl_nombre, gbc_nombre);
+
+		JTextField txt_nombre = new JTextField();
+		txt_nombre.setFont(FUENTE);
+		txt_nombre.setColumns(15);
+		GridBagConstraints gbc_txtNombre = new GridBagConstraints();
+		gbc_txtNombre.gridx = 3;
+		gbc_txtNombre.gridy = 1;
+		txt_nombre.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (Character.isLowerCase(c)) {
+					e.setKeyChar(Character.toUpperCase(c));
+				}
+			}
+		});
+		pnl_surConsultarUsuario.add(txt_nombre, gbc_txtNombre);
+
+		JLabel lbl_contrasena = new JLabel("Contraseña:");
+		lbl_contrasena.setFont(FUENTE);
+		GridBagConstraints gbc_contrasena = new GridBagConstraints();
+		gbc_contrasena.anchor = GridBagConstraints.EAST;
+		gbc_contrasena.gridx = 1;
+		gbc_contrasena.gridy = 3;
+		pnl_surConsultarUsuario.add(lbl_contrasena, gbc_contrasena);
+
+		JTextField txt_contrasena = new JTextField();
+		txt_contrasena.setFont(FUENTE);
+		txt_contrasena.setColumns(15);
+		GridBagConstraints gbc_txtContrasena = new GridBagConstraints();
+		gbc_txtContrasena.gridx = 3;
+		gbc_txtContrasena.gridy = 3;
+		txt_contrasena.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (Character.isLowerCase(c)) {
+					e.setKeyChar(Character.toUpperCase(c));
+				}
+			}
+		});
+		pnl_surConsultarUsuario.add(txt_contrasena, gbc_txtContrasena);
+
+		JLabel lbl_nivelDeAcceso = new JLabel("Nivel de acceso:");
+		lbl_nivelDeAcceso.setFont(FUENTE);
+		GridBagConstraints gbc_nivelDeAcceso = new GridBagConstraints();
+		gbc_nivelDeAcceso.anchor = GridBagConstraints.EAST;
+		gbc_nivelDeAcceso.gridx = 1;
+		gbc_nivelDeAcceso.gridy = 5;
+		pnl_surConsultarUsuario.add(lbl_nivelDeAcceso, gbc_nivelDeAcceso);
+
+		JTextField txt_nivelDeAcceso = new JTextField();
+		txt_nivelDeAcceso.setFont(FUENTE);
+		txt_nivelDeAcceso.setColumns(15);
+		GridBagConstraints gbc_txtNivelDeAcceso = new GridBagConstraints();
+		gbc_txtNivelDeAcceso.gridx = 3;
+		gbc_txtNivelDeAcceso.gridy = 5;
+		txt_nivelDeAcceso.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (Character.isLowerCase(c)) {
+					e.setKeyChar(Character.toUpperCase(c));
+				}
+			}
+		});
+		pnl_surConsultarUsuario.add(txt_nivelDeAcceso, gbc_txtNivelDeAcceso);
+
+		JLabel lbl_diseno = new JLabel("Diseño:");
+		lbl_diseno.setFont(FUENTE);
+		GridBagConstraints gbc_diseno = new GridBagConstraints();
+		gbc_diseno.anchor = GridBagConstraints.EAST;
+		gbc_diseno.gridx = 1;
+		gbc_diseno.gridy = 7;
+		pnl_surConsultarUsuario.add(lbl_diseno, gbc_diseno);
+
+		JTextField txt_diseno = new JTextField();
+		txt_diseno.setFont(FUENTE);
+		txt_diseno.setColumns(15);
+		GridBagConstraints gbc_txtDiseno = new GridBagConstraints();
+		gbc_txtDiseno.gridx = 3;
+		gbc_txtDiseno.gridy = 7;
+		txt_diseno.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (Character.isLowerCase(c)) {
+					e.setKeyChar(Character.toUpperCase(c));
+				}
+			}
+		});
+		pnl_surConsultarUsuario.add(txt_diseno, gbc_txtDiseno);
+
+		
+		
 		JButton btn_actualizar = new JButton("Actualizar");
 		GridBagConstraints gbc_actualizar = new GridBagConstraints();
-		gbc_actualizar.gridx = 3;
-		gbc_actualizar.gridy = 1;
+		gbc_actualizar.gridx = 7;
+		gbc_actualizar.gridy = 7;
 		pnl_surConsultarUsuario.add(btn_actualizar, gbc_actualizar);
 
+		
+		//BOTON "SELECCIONAR" DEL PANEL CENTRO
+
+		JButton btn_seleccionar = new JButton("Seleccionar");
+		GridBagLayout gbl_pnlExtra = new GridBagLayout();
+		gbl_pnlExtra.columnWidths = new int[] {0,0,0};
+		JPanel pnlExtra = new JPanel(gbl_pnlExtra);
+		GridBagConstraints gbc_btnSeleccionar = new GridBagConstraints();
+		gbc_btnSeleccionar.gridx = 1;
+		pnlExtra.add(btn_seleccionar,gbc_btnSeleccionar);
+	/*	btn_seleccionar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (tablaUsuarios.getSelectedRow() != -1) {
+					int numeroDeUsuario=Integer.parseInt((String) tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 0));
+					
+					txt_nombre.setText();
+					
+				} else {
+					JOptionPane.showMessageDialog(null, "Por favor, seleccione una fila", "ChestQuery", 1);
+				}
+			}
+		});*/
+		pnl_centroConsultarUsuario.add(pnlExtra,BorderLayout.SOUTH);
+
+		
+		
 	}
+	
+	
+	
 
 	public void actualizarDatosTabla() {
 		modeloTablaUsuarios.setRowCount(0);
