@@ -5,7 +5,6 @@ import javax.swing.table.TableModel;
 import model.Categoria;
 import model.Modelo;
 import model.Usuario;
-import view.TabbedPaneUsuarios;
 import view.Vista;
 import view.VistaBloqueo;
 import view.VistaContacto;
@@ -35,8 +34,7 @@ public class Controlador {
 		if(usuarioAceptado!=null){
 			System.out.println("GENIAL!");
 			vista.ocultarPestaña();
-			vistaPremium = new VistaPremium(this);
-			vistaPremium.setUsuario(usuarioAceptado);
+			vistaPremium = new VistaPremium(this,usuarioAceptado);
 			vistaPremium.ejecutar();
 		}else {
 			System.out.println("NO COINCIDEN EL NOMBRE Y CONTRASEÑA INGRESADOS");

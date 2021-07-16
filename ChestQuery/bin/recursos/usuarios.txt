@@ -1,8 +1,8 @@
-#modificamos nivel de acceso de RICARDO(Usuario3)
-#Fri Jul 16 12:03:20 ART 2021
+#modificamos diseno de RICARDO(Usuario3)
+#Fri Jul 16 12:21:44 ART 2021
 Usuario1=A
 Usuario1Contrasena=A
-Usuario1Diseno=2
+Usuario1Diseno=4
 Usuario2Diseno=0
 Usuario4=ANGELES
 CantidadUsuarios=4
@@ -11,9 +11,9 @@ Usuario2=NAZARENA
 Usuario2Contrasena=1964
 Usuario1NivelDeAcceso=PREMIUM
 Usuario2NivelDeAcceso=PREMIUM
-Usuario3NivelDeAcceso=PREMIUM
+Usuario3NivelDeAcceso=DEFAULT
 Usuario4Diseno=2
 Usuario4NivelDeAcceso=DEFAULT
-Usuario3Diseno=0
+Usuario3Diseno=3
 Usuario3Contrasena=MASTER
 Usuario4Contrasena=PEPE

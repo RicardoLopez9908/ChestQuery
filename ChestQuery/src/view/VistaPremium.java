@@ -37,6 +37,8 @@ public class VistaPremium {
 
 	private JPanel panel_2;
 
+	private Usuario usuarioAceptado;
+
 	// ----------------------------------------------------------
 	private final int ALTO = 800;
 	private final int ANCHO = 1000;
@@ -50,8 +52,9 @@ public class VistaPremium {
 
 	// ----------------------------------------------------------
 
-	public VistaPremium(Controlador controlador) {
+	public VistaPremium(Controlador controlador,Usuario usuarioAceptado) {
 		this.controlador = controlador;
+		this.usuarioAceptado = usuarioAceptado;
 		this.controlador.agregarVistaPremium(this);
 		window = new JFrame("ChestQuery");
 		window.setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource(IMAGEN_ICONO)));
@@ -62,6 +65,8 @@ public class VistaPremium {
 		window.setContentPane(panel);
 		this.agregarPanelesSecunadarios();
 		this.agregarComponentesPanel1();
+		this.definirNivelDeAcceso();
+		this.actualizarFondo(usuarioAceptado.getDiseño());
 	}
 
 	private void agregarPanelesSecunadarios() {
@@ -74,15 +79,30 @@ public class VistaPremium {
 		CardLayout cd_panel_2 = new CardLayout();
 		panel_2.setLayout(cd_panel_2);
 		panel.setRightComponent(panel_2);
-}
+	}
 
 	private void asignarPanelPrincipal(JTabbedPane panel) {
 		panel_2.removeAll();
 		panel_2.add(panel);
 		panel_2.repaint();
-		panel_2.revalidate();	
+		panel_2.revalidate();
 	}
-	
+
+	private void definirNivelDeAcceso() {
+		switch (usuarioAceptado.getNivelDeAcceso()) {
+		case DEFAULT:
+			boton4.setVisible(false);	//reporte
+			boton5.setVisible(false);	//usuarios
+			break;
+		case MEDIUM:
+			boton5.setVisible(false);	//usuarios
+			break;
+		case PREMIUM:
+			break;		//acceso ilimitado
+		}
+
+	}
+
 	private void agregarComponentesPanel1() {
 
 		// -----------------------------BOTONES--------------------------
@@ -94,7 +114,7 @@ public class VistaPremium {
 		boton1.setBorderPainted(true);
 		boton1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TabbedPaneInventario nuevoPanel = new TabbedPaneInventario(); 
+				TabbedPaneInventario nuevoPanel = new TabbedPaneInventario();
 				asignarPanelPrincipal(nuevoPanel);
 			}
 		});
@@ -106,7 +126,7 @@ public class VistaPremium {
 		boton2.setContentAreaFilled(false);
 		boton2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TabbedPaneClientes nuevoPanel = new TabbedPaneClientes(); 
+				TabbedPaneClientes nuevoPanel = new TabbedPaneClientes();
 				asignarPanelPrincipal(nuevoPanel);
 			}
 		});
@@ -118,31 +138,31 @@ public class VistaPremium {
 		boton3.setContentAreaFilled(false);
 		boton3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TabbedPaneProveedores nuevoPanel = new TabbedPaneProveedores(); 
+				TabbedPaneProveedores nuevoPanel = new TabbedPaneProveedores();
 				asignarPanelPrincipal(nuevoPanel);
 			}
 		});
 		panel_1.add(boton3);
 
-		boton4 = new JButton("Usuarios");
+		boton4 = new JButton("Reportes");
 		boton4.setFont(new Font("dialog", 3, 15));
 		boton4.setFocusPainted(false);
 		boton4.setContentAreaFilled(false);
 		boton4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TabbedPaneUsuarios nuevoPanel = new TabbedPaneUsuarios(controlador);
+				TabbedPaneIndefinido nuevoPanel = new TabbedPaneIndefinido();
 				asignarPanelPrincipal(nuevoPanel);
 			}
 		});
 		panel_1.add(boton4);
 
-		boton5 = new JButton("indefinido");
+		boton5 = new JButton("Usuarios");
 		boton5.setFont(new Font("dialog", 3, 15));
 		boton5.setFocusPainted(false);
 		boton5.setContentAreaFilled(false);
 		boton5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TabbedPaneIndefinido nuevoPanel = new TabbedPaneIndefinido(); 
+				TabbedPaneUsuarios nuevoPanel = new TabbedPaneUsuarios(controlador);
 				asignarPanelPrincipal(nuevoPanel);
 			}
 		});
@@ -170,14 +190,15 @@ public class VistaPremium {
 			public void actionPerformed(ActionEvent e) {
 				controlador.bloquearPantalla();
 			}
-		});mnAjustes.add(itemBloqueo);
+		});
+		mnAjustes.add(itemBloqueo);
 
 		JMenuItem item3 = new JMenuItem("3");
 		mnAjustes.add(item3);
 
 		JMenu mnAyuda = new JMenu("Ayuda");
 		menuBar.add(mnAyuda);
-		
+
 		JMenuItem itemContacto = new JMenuItem("Contacto");
 		itemContacto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -185,7 +206,6 @@ public class VistaPremium {
 			}
 		});
 		mnAyuda.add(itemContacto);
-
 
 	}
 
@@ -242,10 +262,6 @@ public class VistaPremium {
 		default:
 			break;
 		}
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.actualizarFondo(usuario.getDiseño());
 	}
 
 	public void ejecutar() {
