@@ -112,7 +112,8 @@ public class VistaPrincipal {
 		boton1.setBorderPainted(true);
 		boton1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TabbedPaneInventario nuevoPanel = new TabbedPaneInventario();
+				controlador.crearModeloInventario();
+				TabbedPaneInventario nuevoPanel = new TabbedPaneInventario(controlador);
 				asignarPanelPrincipal(nuevoPanel);
 			}
 		});

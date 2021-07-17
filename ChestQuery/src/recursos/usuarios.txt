@@ -1,8 +1,8 @@
-#Eliminamos el usuario numero :6
-#Fri Jul 16 16:17:06 ART 2021
+#modificamos diseno de A(Usuario1)
+#Fri Jul 16 20:39:14 ART 2021
 Usuario1=A
 Usuario1Contrasena=A
-Usuario1Diseno=0
+Usuario1Diseno=1
 Usuario5=OPERARIO2
 Usuario4=ANGELES
 CantidadUsuarios=7
@@ -12,12 +12,12 @@ Usuario7=SUPERVISORPRODUCCION
 Usuario6=SUEPERVISORLOGISTICA
 Usuario6Contrasena=LOGISTICA
 Usuario2NivelDeAcceso=MEDIUM
-Usuario3NivelDeAcceso=MEDIUM
+Usuario3NivelDeAcceso=DEFAULT
 Usuario4Diseno=2
 Usuario4NivelDeAcceso=DEFAULT
 Usuario5Contrasena=PEPE
 Usuario7NivelDeAcceso=MEDIUM
-Usuario3Contrasena=MASTER
+Usuario3Contrasena=PEPE
 Usuario5NivelDeAcceso=DEFAULT
 Usuario6NivelDeAcceso=MEDIUM
 Usuario7Diseno=0

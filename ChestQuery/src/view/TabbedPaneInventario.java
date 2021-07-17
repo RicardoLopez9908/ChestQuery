@@ -14,16 +14,24 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableRowSorter;
 import javax.swing.text.MaskFormatter;
 
+import controller.Controlador;
+
 public class TabbedPaneInventario extends JTabbedPane {
+
+	private Controlador controlador;
 
 	private JPanel pnl_agregarArticulo;
 	private JPanel pnl_centroAgregarArticulo;
@@ -32,55 +40,9 @@ public class TabbedPaneInventario extends JTabbedPane {
 	private JPanel pnl_eliminarArticulo;
 	private JPanel pnl_norteEliminarArticulo;
 	private JPanel pnl_centroEliminarArticulo;
-	private String datosTablaArticulos[][] = new String[][] {
-			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
-					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
-			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
-					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
-			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
-					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
-			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
-					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
-			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
-					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
-			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
-					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
-			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
-					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
-			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
-					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
-			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
-					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
-			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
-					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
-			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
-					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
-			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
-					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
-			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
-					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
-			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
-					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
-			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
-					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
-			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
-					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
-			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
-					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
-			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
-					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
-			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
-					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
-			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
-					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
-			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
-					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
-			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
-					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
-			new String[] { "1234567891234", "PURE DE PAPAS INSTANTANEO X 5 KG", "5067", "25",
-					"EL PEPE", "12/05/2022", "RECIBIDO CON LA ORDEN DE COMPRA Nº 4578394, EN BUEN ESTADO" },
-	
-	};
+	private String datosTablaArticulos[][];
+	private JTable tablaArticulos1;
+	private JTable tablaArticulos2;
 
 	private JPanel pnl_surEliminarArticulo;
 
@@ -90,13 +52,15 @@ public class TabbedPaneInventario extends JTabbedPane {
 	private JPanel pnl_surConsultarArticulo;
 
 	private JFormattedTextField txt_vencimiento;
+	private DefaultTableModel modeloTablaArticulos;
+
 	// -------------------------------------------------
 	private static Font FUENTE = new Font("dialog", 4, 18);
-	String[] columnasTablaArticulos = new String[] { "Codigo", "Nombre", "Posición", "Cantidad", "Proveedor","Vencimiento", "Detalle" };
+	String[] columnasTablaArticulos = new String[] { "Codigo", "Nombre", "Posición", "Cantidad", "Proveedor",
+			"Vencimiento", "Detalle" };
 
-	
-
-	public TabbedPaneInventario() {
+	public TabbedPaneInventario(Controlador controlador) {
+		this.controlador = controlador;
 		this.componentesAgregarArticulo();
 		this.componentesEliminarArticulos();
 		this.componentesConsultarArticulo();
@@ -318,7 +282,7 @@ public class TabbedPaneInventario extends JTabbedPane {
 	}
 
 	private void componentesEliminarArticulos() {
-		// --------------ELIMINAR ARTICULO--------------------
+		// --------------ELIMINAR USUARIOS--------------------
 
 		pnl_eliminarArticulo = new JPanel(new BorderLayout());
 
@@ -343,12 +307,11 @@ public class TabbedPaneInventario extends JTabbedPane {
 
 		JComboBox<String> columnasArticulo = new JComboBox<String>(columnasTablaArticulos);
 		columnasArticulo.setFont(FUENTE);
-		GridBagConstraints gbc_columnaArticulo = new GridBagConstraints();
-		gbc_columnaArticulo.gridx = 0;
-		gbc_columnaArticulo.gridy = 1;
-		pnl_norteEliminarArticulo.add(columnasArticulo,gbc_columnaArticulo);
-		
-		
+		GridBagConstraints gbc_columnasArticulo = new GridBagConstraints();
+		gbc_columnasArticulo.gridx = 0;
+		gbc_columnasArticulo.gridy = 1;
+		pnl_norteEliminarArticulo.add(columnasArticulo, gbc_columnasArticulo);
+
 		JTextField txt_articuloBuscado = new JTextField();
 		GridBagConstraints gbc_articuloBuscado = new GridBagConstraints();
 		gbc_articuloBuscado.gridx = 2;
@@ -369,40 +332,70 @@ public class TabbedPaneInventario extends JTabbedPane {
 		GridBagConstraints gbc_buscar = new GridBagConstraints();
 		gbc_buscar.gridx = 4;
 		gbc_buscar.gridy = 1;
+
 		pnl_norteEliminarArticulo.add(btn_buscar, gbc_buscar);
 
 		// -----------------CENTRO---------------------------
-
-
-		JTable tablaArticulos = new JTable(datosTablaArticulos, columnasTablaArticulos) {
+		datosTablaArticulos = controlador.getDatosTablaArticulos();
+		modeloTablaArticulos = new DefaultTableModel();
+		modeloTablaArticulos.setDataVector(datosTablaArticulos, columnasTablaArticulos);
+		modeloTablaArticulos.fireTableDataChanged();
+		JTable tablaArticulos1 = new JTable(modeloTablaArticulos) {
+			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}
 		};
-		tablaArticulos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-	
-		
-		TableColumnModel columnModel = tablaArticulos.getColumnModel();
-		
-		columnModel.getColumn(0).setPreferredWidth(130);  	//codigo
-		columnModel.getColumn(1).setPreferredWidth(300);	//nombre
-		columnModel.getColumn(2).setPreferredWidth(100);	//posición
-		columnModel.getColumn(3).setPreferredWidth(75);		//cantidad
-		columnModel.getColumn(4).setPreferredWidth(200);	//proveedor
-		columnModel.getColumn(5).setPreferredWidth(100);	//vencimiento
-		columnModel.getColumn(6).setPreferredWidth(550);	//detalle
 
-		
-		JScrollPane scp_tablaArticulos = new JScrollPane(tablaArticulos,
-				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		
-		
+		tablaArticulos1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+		this.dimensionarTablas(tablaArticulos1);
+
+		TableRowSorter<DefaultTableModel> filtroTablaArticulos = new TableRowSorter<DefaultTableModel>(
+				modeloTablaArticulos);
+		tablaArticulos1.setRowSorter(filtroTablaArticulos);
+
+		btn_buscar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if ((columnasArticulo.getSelectedIndex() != -1) && (txt_articuloBuscado.getText() != null)) {
+					filtroTablaArticulos.setRowFilter(
+							RowFilter.regexFilter(txt_articuloBuscado.getText(), columnasArticulo.getSelectedIndex()));
+
+				}
+			}
+		});
+
+		JScrollPane scp_tablaArticulos = new JScrollPane();
+		scp_tablaArticulos.setViewportView(tablaArticulos1);
+
 		pnl_centroEliminarArticulo.add(scp_tablaArticulos);
 
-		
 		// -----------------SUR------------------------------
 
 		JButton btn_borrar = new JButton("Borrar");
+		btn_borrar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (tablaArticulos1.getSelectedRow() != -1) {
+					controlador.borrarArticulo(
+							Long.parseLong((String) tablaArticulos1.getValueAt(tablaArticulos1.getSelectedRow(), 0)), // codigo
+							((String) tablaArticulos1.getValueAt(tablaArticulos1.getSelectedRow(), 1)), // nombre
+							Integer.parseInt((String) tablaArticulos1.getValueAt(tablaArticulos1.getSelectedRow(), 2)), // posicion
+							Integer.parseInt((String) tablaArticulos1.getValueAt(tablaArticulos1.getSelectedRow(), 3)), // cantidad
+							((String) tablaArticulos1.getValueAt(tablaArticulos1.getSelectedRow(), 4)), // proveedor
+							((String) tablaArticulos1.getValueAt(tablaArticulos1.getSelectedRow(), 5)), // vencimiento
+							((String) tablaArticulos1.getValueAt(tablaArticulos1.getSelectedRow(), 6)) // detalle
+					);
+					actualizarDatosTabla();
+					dimensionarTablas(tablaArticulos1);
+					dimensionarTablas(tablaArticulos2);
+
+				} else {
+					JOptionPane.showMessageDialog(null, "Por favor, seleccione una fila", "ChestQuery", 1);
+				}
+			}
+		});
 		GridBagConstraints gbc_borrar = new GridBagConstraints();
 		gbc_borrar.gridx = 3;
 		gbc_borrar.gridy = 1;
@@ -439,10 +432,8 @@ public class TabbedPaneInventario extends JTabbedPane {
 		GridBagConstraints gbc_columnaArticulo = new GridBagConstraints();
 		gbc_columnaArticulo.gridx = 0;
 		gbc_columnaArticulo.gridy = 1;
-		pnl_norteConsultarArticulo.add(columnasArticulo,gbc_columnaArticulo);
-		
-		
-		
+		pnl_norteConsultarArticulo.add(columnasArticulo, gbc_columnaArticulo);
+
 		JTextField txt_articuloBuscado = new JTextField();
 		GridBagConstraints gbc_articuloBuscado = new GridBagConstraints();
 		gbc_articuloBuscado.gridx = 2;
@@ -466,29 +457,37 @@ public class TabbedPaneInventario extends JTabbedPane {
 		pnl_norteConsultarArticulo.add(btn_buscar, gbc_buscar);
 
 		// -----------------CENTRO---------------------------
+		tablaArticulos2 = new JTable(modeloTablaArticulos) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
 
-		String[] columnasTablaArticulos = new String[] { "Codigo", "Nombre", "Posición", "Cantidad", "Proveedor",
-				"Vencimiento", "Detalle" };
+		tablaArticulos2.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-		JTable tablaArticulos = new JTable(datosTablaArticulos, columnasTablaArticulos);
-		tablaArticulos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		
-		TableColumnModel columnModel = tablaArticulos.getColumnModel();
-		
-		columnModel.getColumn(0).setPreferredWidth(130);  	//codigo
-		columnModel.getColumn(1).setPreferredWidth(300);	//nombre
-		columnModel.getColumn(2).setPreferredWidth(100);	//posición
-		columnModel.getColumn(3).setPreferredWidth(75);		//cantidad
-		columnModel.getColumn(4).setPreferredWidth(200);	//proveedor
-		columnModel.getColumn(5).setPreferredWidth(100);	//vencimiento
-		columnModel.getColumn(6).setPreferredWidth(550);	//detalle
+		this.dimensionarTablas(tablaArticulos2);
 
-		
-		JScrollPane scp_tablaArticulos = new JScrollPane(tablaArticulos,
-				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		TableRowSorter<DefaultTableModel> filtroTablaArticulos = new TableRowSorter<DefaultTableModel>(
+				modeloTablaArticulos);
+		tablaArticulos2.setRowSorter(filtroTablaArticulos);
+
+		btn_buscar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if ((columnasArticulo.getSelectedIndex() != -1) && (txt_articuloBuscado.getText() != null)) {
+					filtroTablaArticulos.setRowFilter(
+							RowFilter.regexFilter(txt_articuloBuscado.getText(), columnasArticulo.getSelectedIndex()));
+
+				}
+			}
+		});
+
+		JScrollPane scp_tablaArticulos = new JScrollPane();
+		scp_tablaArticulos.setViewportView(tablaArticulos2);
+
 		pnl_centroConsultarArticulo.add(scp_tablaArticulos);
 
-		
 		// -----------------SUR------------------------------
 
 		JButton btn_actualizar = new JButton("Actualizar");
@@ -497,14 +496,47 @@ public class TabbedPaneInventario extends JTabbedPane {
 		gbc_actualizar.gridy = 1;
 		pnl_surConsultarArticulo.add(btn_actualizar, gbc_actualizar);
 
+		btn_buscar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if ((columnasArticulo.getSelectedIndex() != -1) && (!txt_articuloBuscado.getText().equals(""))) {
+					filtroTablaArticulos.setRowFilter(
+							RowFilter.regexFilter(txt_articuloBuscado.getText(), columnasArticulo.getSelectedIndex()));
+
+				}
+			}
+		});
+
+	}
+
+	private void dimensionarTablas(JTable tabla) {
+		TableColumnModel columnModel = tabla.getColumnModel();
+
+		columnModel.getColumn(0).setPreferredWidth(130); // codigo
+		columnModel.getColumn(1).setPreferredWidth(300); // nombre
+		columnModel.getColumn(2).setPreferredWidth(100); // posición
+		columnModel.getColumn(3).setPreferredWidth(75); // cantidad
+		columnModel.getColumn(4).setPreferredWidth(200); // proveedor
+		columnModel.getColumn(5).setPreferredWidth(100); // vencimiento
+		columnModel.getColumn(6).setPreferredWidth(550); // detalle
+
+	}
+
+	private void actualizarDatosTabla() {
+		modeloTablaArticulos.setRowCount(0);
+		datosTablaArticulos = controlador.getDatosTablaArticulos();
+		modeloTablaArticulos.setDataVector(datosTablaArticulos, columnasTablaArticulos);
+
 	}
 
 	public void mostrar() {
+		this.setEnabled(true);
 		this.setVisible(true);
 	}
 
 	public void ocultar() {
-		this.disable();
+		this.setEnabled(false);
+		;
 		this.setVisible(false);
 	}
 
