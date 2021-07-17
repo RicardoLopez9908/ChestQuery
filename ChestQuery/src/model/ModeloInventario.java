@@ -52,5 +52,11 @@ public class ModeloInventario {
 		dao.actualizarInformacion();
 	}
 	
+	public void actualizarArticulo(Articulo anterioresDatosArticulo,Articulo nuevosDatosArticulo) {
+		dao.actualizarArticulo(anterioresDatosArticulo,nuevosDatosArticulo);
+		articulos.clear();
+		dao.actualizarInformacion();	
+	}
+	
 	
 }

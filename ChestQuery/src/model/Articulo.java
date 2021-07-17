@@ -56,6 +56,8 @@ public class Articulo {
 		return detalle;
 	}
 
-	
+	public String toString() {
+		return nombre + codigo + cantidad + posicion + proveedor + vencimiento + detalle; 
+	}
 	
 }

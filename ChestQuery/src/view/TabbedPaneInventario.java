@@ -27,6 +27,7 @@ import javax.swing.table.TableRowSorter;
 import javax.swing.text.MaskFormatter;
 
 import controller.Controlador;
+import model.Articulo;
 
 public class TabbedPaneInventario extends JTabbedPane {
 
@@ -52,7 +53,11 @@ public class TabbedPaneInventario extends JTabbedPane {
 
 	private JFormattedTextField txt_vencimiento;
 	private DefaultTableModel modeloTablaArticulos;
-
+	
+	private Articulo anterioresDatosArticulo;
+	private Articulo nuevosDatosArticulo;
+	
+	
 	// -------------------------------------------------
 	private static Font FUENTE = new Font("dialog", 4, 18);
 	String[] columnasTablaArticulos = new String[] { "Codigo", "Nombre", "Posición", "Cantidad", "Proveedor",
@@ -442,21 +447,21 @@ public class TabbedPaneInventario extends JTabbedPane {
 	}
 
 	private void componentesConsultarArticulo() {
-		// --------------ELIMINAR ARTICULO--------------------
+		// --------------CONSULTAR ARTICULO--------------------
 
 		pnl_consultarArticulo = new JPanel(new BorderLayout());
 
 		GridBagLayout gbl_norteConsultarArticulo = new GridBagLayout();
 		gbl_norteConsultarArticulo.columnWidths = new int[] { 0, 40, 0, 40, 0 }; // COLUMNAS
-		gbl_norteConsultarArticulo.rowHeights = new int[] { 70, 0, 70 }; // FILAS
+		gbl_norteConsultarArticulo.rowHeights = new int[] { 30, 0, 40 }; // FILAS
 		pnl_norteConsultarArticulo = new JPanel(gbl_norteConsultarArticulo);
 
 		BorderLayout bl_centroConsultarArticulo = new BorderLayout();
 		pnl_centroConsultarArticulo = new JPanel(bl_centroConsultarArticulo);
 
 		GridBagLayout gbl_surConsultarArticulo = new GridBagLayout();
-		gbl_surConsultarArticulo.columnWidths = new int[] { 0, 0, 40, 0, 0 }; // COLUMNAS
-		gbl_surConsultarArticulo.rowHeights = new int[] { 40, 0, 40 }; // FILAS
+		gbl_surConsultarArticulo.columnWidths = new int[] { 5, 0, 20, 0, 20, 0, 150, 0, 5 }; // COLUMNAS
+		gbl_surConsultarArticulo.rowHeights = new int[] { 40, 0, 10, 0, 10, 0, 10, 0, 10, 0, 10, 0, 10, 0, 30 }; // FILAS
 		pnl_surConsultarArticulo = new JPanel(gbl_surConsultarArticulo);
 
 		pnl_consultarArticulo.add(pnl_norteConsultarArticulo, BorderLayout.NORTH);
@@ -528,12 +533,211 @@ public class TabbedPaneInventario extends JTabbedPane {
 
 		// -----------------SUR------------------------------
 
+
+		JLabel lbl_codigo = new JLabel("Codigo:");
+		lbl_codigo.setFont(FUENTE);
+		GridBagConstraints gbc_codigo = new GridBagConstraints();
+		gbc_codigo.anchor = GridBagConstraints.EAST;
+		gbc_codigo.gridx = 1;
+		gbc_codigo.gridy = 1;
+		pnl_surConsultarArticulo.add(lbl_codigo, gbc_codigo);
+
+		JTextField txt_codigo = new JTextField();
+		txt_codigo.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (!Character.isDigit(c)) {
+					e.consume();
+				}
+			}
+		});
+		txt_codigo.setFont(FUENTE);
+		txt_codigo.setColumns(15);
+		GridBagConstraints gbc_txtCodigo = new GridBagConstraints();
+		gbc_txtCodigo.gridx = 3;
+		gbc_txtCodigo.gridy = 1;
+		pnl_surConsultarArticulo.add(txt_codigo, gbc_txtCodigo);
+
+		
+		JLabel lbl_nombre = new JLabel("Nombre:");
+		lbl_nombre.setFont(FUENTE);
+		GridBagConstraints gbc_nombre = new GridBagConstraints();
+		gbc_nombre.anchor = GridBagConstraints.EAST;
+		gbc_nombre.gridx = 1;
+		gbc_nombre.gridy = 3;
+		pnl_surConsultarArticulo.add(lbl_nombre, gbc_nombre);
+
+		JTextField txt_nombre = new JTextField();
+		txt_nombre.setFont(FUENTE);
+		txt_nombre.setColumns(15);
+		GridBagConstraints gbc_txtNombre = new GridBagConstraints();
+		gbc_txtNombre.gridx = 3;
+		gbc_txtNombre.gridy = 3;
+		txt_nombre.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (Character.isLowerCase(c)) {
+					e.setKeyChar(Character.toUpperCase(c));
+				}
+			}
+		});
+		pnl_surConsultarArticulo.add(txt_nombre, gbc_txtNombre);
+
+		JLabel lbl_posicion = new JLabel("Posición:");
+		lbl_posicion.setFont(FUENTE);
+		GridBagConstraints gbc_posicion = new GridBagConstraints();
+		gbc_posicion.anchor = GridBagConstraints.EAST;
+		gbc_posicion.gridx = 1;
+		gbc_posicion.gridy = 5;
+		pnl_surConsultarArticulo.add(lbl_posicion, gbc_posicion);
+
+		JTextField txt_posicion = new JTextField();
+		txt_posicion.setFont(FUENTE);
+		txt_posicion.setColumns(15);
+		txt_posicion.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (!Character.isDigit(c)) {
+					e.consume();
+				}
+			}
+		});
+		GridBagConstraints gbc_txtPosicion = new GridBagConstraints();
+		gbc_txtPosicion.gridx = 3;
+		gbc_txtPosicion.gridy = 5;
+		pnl_surConsultarArticulo.add(txt_posicion, gbc_txtPosicion);
+
+		
+		JLabel lbl_cantidad = new JLabel("Cantidad:");
+		lbl_cantidad.setFont(FUENTE);
+		GridBagConstraints gbc_cantidad = new GridBagConstraints();
+		gbc_cantidad.anchor = GridBagConstraints.EAST;
+		gbc_cantidad.gridx = 1;
+		gbc_cantidad.gridy = 7;
+		pnl_surConsultarArticulo.add(lbl_cantidad, gbc_cantidad);
+
+		JTextField txt_cantidad = new JTextField();
+		txt_cantidad.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (!Character.isDigit(c)) {
+					e.consume();
+				}
+			}
+		});
+		txt_cantidad.setFont(FUENTE);
+		txt_cantidad.setColumns(15);
+		GridBagConstraints gbc_txtCantidad = new GridBagConstraints();
+		gbc_txtCantidad.gridx = 3;
+		gbc_txtCantidad.gridy = 7;
+		pnl_surConsultarArticulo.add(txt_cantidad, gbc_txtCantidad);
+
+
+		JLabel lbl_proveedor = new JLabel("Proveedor:");
+		lbl_proveedor.setFont(FUENTE);
+		GridBagConstraints gbc_proveedor = new GridBagConstraints();
+		gbc_proveedor.anchor = GridBagConstraints.EAST;
+		gbc_proveedor.gridx = 1;
+		gbc_proveedor.gridy = 9;
+		pnl_surConsultarArticulo.add(lbl_proveedor, gbc_proveedor);
+
+		JTextField txt_proveedor = new JTextField();
+		txt_proveedor.setFont(FUENTE);
+		txt_proveedor.setColumns(15);
+		GridBagConstraints gbc_txtProveedor = new GridBagConstraints();
+		gbc_txtProveedor.gridx = 3;
+		gbc_txtProveedor.gridy = 9;
+		txt_proveedor.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (Character.isLowerCase(c)) {
+					e.setKeyChar(Character.toUpperCase(c));
+				}
+			}
+		});
+		pnl_surConsultarArticulo.add(txt_proveedor, gbc_txtProveedor);
+		
+
+		JLabel lbl_vencimiento = new JLabel("Vencimiento:");
+		lbl_vencimiento.setFont(FUENTE);
+		GridBagConstraints gbc_vencimiento = new GridBagConstraints();
+		gbc_vencimiento.anchor = GridBagConstraints.EAST;
+		gbc_vencimiento.gridx = 1;
+		gbc_vencimiento.gridy = 11;
+		pnl_surConsultarArticulo.add(lbl_vencimiento, gbc_vencimiento);
+
+		txt_vencimiento = null;
+		try {
+			MaskFormatter formatter = new MaskFormatter("## / ## / ####");
+			txt_vencimiento = new JFormattedTextField(formatter);
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
+		txt_vencimiento.setFont(FUENTE);
+		txt_vencimiento.setColumns(15);
+		GridBagConstraints gbc_txtVencimiento = new GridBagConstraints();
+		gbc_txtVencimiento.gridx = 3;
+		gbc_txtVencimiento.gridy = 11;
+		pnl_surConsultarArticulo.add(txt_vencimiento, gbc_txtVencimiento);
+
+
+		JLabel lbl_detalle = new JLabel("Detalle:");
+		lbl_detalle.setFont(FUENTE);
+		GridBagConstraints gbc_detalle = new GridBagConstraints();
+		gbc_detalle.anchor = GridBagConstraints.EAST;
+		gbc_detalle.gridx = 1;
+		gbc_detalle.gridy = 13;
+		pnl_surConsultarArticulo.add(lbl_detalle, gbc_detalle);
+
+		JTextField txt_detalle = new JTextField();
+		txt_detalle.setFont(FUENTE);
+		txt_detalle.setColumns(15);
+		GridBagConstraints gbc_txtDetalle = new GridBagConstraints();
+		gbc_txtDetalle.gridx = 3;
+		gbc_txtDetalle.gridy = 13;
+		txt_detalle.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (Character.isLowerCase(c)) {
+					e.setKeyChar(Character.toUpperCase(c));
+				}
+			}
+		});
+		pnl_surConsultarArticulo.add(txt_detalle, gbc_txtDetalle);
+
+
+
+
+		
+		
 		JButton btn_actualizar = new JButton("Actualizar");
 		GridBagConstraints gbc_actualizar = new GridBagConstraints();
-		gbc_actualizar.gridx = 3;
-		gbc_actualizar.gridy = 1;
+		gbc_actualizar.gridx = 7;
+		gbc_actualizar.gridy = 13;
 		pnl_surConsultarArticulo.add(btn_actualizar, gbc_actualizar);
 
+		btn_actualizar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				nuevosDatosArticulo = new Articulo(txt_nombre.getText(),Long.parseLong(txt_codigo.getText()),Integer.parseInt(txt_cantidad.getText()),Integer.parseInt(txt_posicion.getText()),txt_proveedor.getText(),txt_vencimiento.getText(),txt_detalle.getText());
+				if(!anterioresDatosArticulo.equals(nuevosDatosArticulo)) {
+					controlador.actualizarArticulo(anterioresDatosArticulo,nuevosDatosArticulo);
+					txt_codigo.setText("");
+					txt_nombre.setText("");
+					txt_cantidad.setText("");
+					txt_detalle.setText("");
+					txt_vencimiento.setText("");
+					txt_proveedor.setText("");
+					txt_posicion.setText("");
+					
+					actualizarDatosTabla();
+					dimensionarTablas(tablaArticulos1);
+					dimensionarTablas(tablaArticulos2);
+					
+				}
+			}
+		} );
+		
 		btn_buscar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -545,6 +749,36 @@ public class TabbedPaneInventario extends JTabbedPane {
 			}
 		});
 
+
+		JButton btn_seleccionar = new JButton("Seleccionar");
+		GridBagLayout gbl_pnlExtra = new GridBagLayout();
+		gbl_pnlExtra.columnWidths = new int[] { 0, 0, 0 };
+		JPanel pnlExtra = new JPanel(gbl_pnlExtra);
+		GridBagConstraints gbc_btnSeleccionar = new GridBagConstraints();
+		gbc_btnSeleccionar.gridx = 1;
+		pnlExtra.add(btn_seleccionar, gbc_btnSeleccionar);
+		btn_seleccionar.addActionListener(new ActionListener() {
+			@Override
+
+			public void actionPerformed(ActionEvent e) {
+				if (tablaArticulos2.getSelectedRow() != -1) {
+					txt_codigo.setText((String) tablaArticulos2.getValueAt(tablaArticulos2.getSelectedRow(), 0));
+					txt_nombre.setText((String) tablaArticulos2.getValueAt(tablaArticulos2.getSelectedRow(), 1));
+					txt_posicion.setText((String) tablaArticulos2.getValueAt(tablaArticulos2.getSelectedRow(), 2));
+					txt_cantidad.setText((String) tablaArticulos2.getValueAt(tablaArticulos2.getSelectedRow(), 3));
+					txt_proveedor.setText((String) tablaArticulos2.getValueAt(tablaArticulos2.getSelectedRow(), 4));
+					txt_vencimiento.setText((String) tablaArticulos2.getValueAt(tablaArticulos2.getSelectedRow(), 5));
+					txt_detalle.setText((String) tablaArticulos2.getValueAt(tablaArticulos2.getSelectedRow(), 6));
+					
+					anterioresDatosArticulo = new Articulo(txt_nombre.getText(),Long.parseLong(txt_codigo.getText()),Integer.parseInt(txt_cantidad.getText()),Integer.parseInt(txt_posicion.getText()),txt_proveedor.getText(),txt_vencimiento.getText(),txt_detalle.getText());
+					
+				}
+			}
+		});
+		pnl_centroConsultarArticulo.add(pnlExtra, BorderLayout.SOUTH);
+
+		
+		
 	}
 
 	private void dimensionarTablas(JTable tabla) {

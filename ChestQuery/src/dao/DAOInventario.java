@@ -121,8 +121,6 @@ public class DAOInventario {
 			// Utilizar la conexión para crear el objeto sentencia
 			Statement stmt = con.createStatement();
 
-			//INSERT INTO Articulos VALUES ('1234567891123', 'PURE DE TOMATE X 5 KG', 'EL PEPE','25/03/2022','RECIBIDA 14/12/2020','35','10');
-			
 			// Ejecución de la consulta usando el objeto de tipo
 			String consulta = "INSERT INTO Articulos VALUES ('"+codigo+"', "
 					+ "'"+nombre+"', "
@@ -143,6 +141,45 @@ public class DAOInventario {
 		
 	}
 	
+
+	
+	public void actualizarArticulo(Articulo anterioresDatosArticulo,Articulo nuevosDatosArticulo) {
+		try {
+			Connection con = DriverManager.getConnection(url, usuario, clave);
+
+			// Utilizar la conexión para crear el objeto sentencia
+			Statement stmt = con.createStatement();
+
+			
+			String consulta = "DELETE FROM Articulos WHERE (Codigo='"+anterioresDatosArticulo.getCodigo()+"') AND "
+					+ "(Nombre='"+anterioresDatosArticulo.getNombre()+"') AND "
+					+ "(Posicion='"+anterioresDatosArticulo.getPosicion()+"') AND" 
+					+ "(Cantidad='"+anterioresDatosArticulo.getCantidad()+"') AND" 
+					+ "(Proveedor='"+anterioresDatosArticulo.getProveedor()+"') AND" 
+					+ "(Vencimiento='"+anterioresDatosArticulo.getVencimiento()+"') AND" 
+					+ "(Detalle='"+anterioresDatosArticulo.getDetalle()+"');";
+			stmt.executeUpdate(consulta);
+
+			
+			// Ejecución de la consulta usando el objeto de tipo
+			consulta = "INSERT INTO Articulos VALUES ('"+nuevosDatosArticulo.getCodigo()+"', "
+					+ "'"+nuevosDatosArticulo.getNombre()+"', "
+					+ "'"+nuevosDatosArticulo.getProveedor()+"'," 
+					+ "'"+nuevosDatosArticulo.getVencimiento()+"'," 
+					+ "'"+nuevosDatosArticulo.getDetalle()+"'," 
+					+ "'"+nuevosDatosArticulo.getPosicion()+"'," 
+					+ "'"+nuevosDatosArticulo.getCantidad()+"');";
+			stmt.executeUpdate(consulta);
+
+			stmt.close();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 
 

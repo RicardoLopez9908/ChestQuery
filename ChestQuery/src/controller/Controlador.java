@@ -2,13 +2,14 @@ package controller;
 
 
 import dao.DAOInventario;
+import model.Articulo;
 import model.Categoria;
 import model.ModeloInventario;
 import model.ModeloUsuarios;
 import model.Usuario;
-import view.VistaInicio;
 import view.VistaBloqueo;
 import view.VistaContacto;
+import view.VistaInicio;
 import view.VistaPersonalizarFondo;
 import view.VistaPrincipal;
 
@@ -148,6 +149,11 @@ public class Controlador{
 			return false;
 		}
 	}
+	
+	public void actualizarArticulo(Articulo anterioresDatosArticulo,Articulo nuevosDatosArticulo) {
+		modeloInventario.actualizarArticulo(anterioresDatosArticulo,nuevosDatosArticulo);
+	}
+	
 	
 	
 }
