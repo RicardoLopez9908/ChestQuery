@@ -21,7 +21,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableRowSorter;
@@ -225,6 +224,14 @@ public class TabbedPaneInventario extends JTabbedPane {
 		JTextField txt_posicion = new JTextField();
 		txt_posicion.setFont(FUENTE);
 		txt_posicion.setColumns(15);
+		txt_posicion.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (!Character.isDigit(c)) {
+					e.consume();
+				}
+			}
+		});
 		GridBagConstraints gbc_txtPosicion = new GridBagConstraints();
 		gbc_txtPosicion.gridx = 3;
 		gbc_txtPosicion.gridy = 6;
@@ -274,6 +281,37 @@ public class TabbedPaneInventario extends JTabbedPane {
 		pnl_surAgregarArticulo.add(btn_cancelar, gbc_cancelar);
 
 		JButton btn_agregar = new JButton("Agregar");
+		btn_agregar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (!((txt_codigo.getText().isEmpty()) || (txt_nombre.getText().isEmpty())
+						|| (txt_cantidad.getText().isEmpty()) || (txt_detalle.getText().isEmpty())
+						|| (txt_posicion.getText().isEmpty()) || (txt_proveedor.getText().isEmpty())
+						|| (txt_vencimiento.getText().isEmpty()))) {
+					controlador.agregarArticulo(
+							txt_codigo.getText(),
+							txt_nombre.getText(),
+							txt_cantidad.getText(),
+							txt_detalle.getText(),
+							txt_posicion.getText(),
+							txt_proveedor.getText(),
+							txt_vencimiento.getText());
+					
+					actualizarDatosTabla();
+					txt_nombre.setText("");
+					txt_codigo.setText("");
+					txt_cantidad.setText("");
+					txt_detalle.setText("");
+					txt_posicion.setText("");
+					txt_proveedor.setText("");
+					txt_vencimiento.setText("");
+					dimensionarTablas(tablaArticulos1);
+					dimensionarTablas(tablaArticulos2);
+				}else {
+					JOptionPane.showMessageDialog(null, "Por favor, completar todas las filas", "ChestQuery", 1);
+				}
+			}
+		});
+
 		GridBagConstraints gbc_agregar = new GridBagConstraints();
 		gbc_agregar.gridx = 3;
 		gbc_agregar.gridy = 1;
@@ -340,7 +378,7 @@ public class TabbedPaneInventario extends JTabbedPane {
 		modeloTablaArticulos = new DefaultTableModel();
 		modeloTablaArticulos.setDataVector(datosTablaArticulos, columnasTablaArticulos);
 		modeloTablaArticulos.fireTableDataChanged();
-		JTable tablaArticulos1 = new JTable(modeloTablaArticulos) {
+		tablaArticulos1 = new JTable(modeloTablaArticulos) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;

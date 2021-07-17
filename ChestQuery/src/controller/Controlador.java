@@ -123,6 +123,12 @@ public class Controlador{
 		
 	}
 	
+	public void agregarArticulo(String codigo,String nombre,String cantidad,String detalle,String posicion,String proveedor,String vencimiento) {
+		modeloInventario.agregarArticuloDAO(codigo,nombre,cantidad,detalle,posicion,proveedor,vencimiento);
+	}
+	
+	
+	
 	public boolean actualizarUsuarioCompleto(int numeroDeUsuario,String nombre,String contrasena,String nivelDeAcceso, int diseno) {
 		Categoria nivel = null;
 		switch(nivelDeAcceso) {

@@ -46,4 +46,11 @@ public class ModeloInventario {
 		dao.actualizarInformacion();
 	}
 
+	public void agregarArticuloDAO(String codigo,String nombre,String cantidad,String detalle,String posicion,String proveedor,String vencimiento) {
+		dao.agregarArticulo(codigo,nombre,cantidad,detalle,posicion,proveedor,vencimiento);
+		articulos.clear();
+		dao.actualizarInformacion();
+	}
+	
+	
 }
