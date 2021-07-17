@@ -1,9 +1,12 @@
 package controller;
 
 
+import dao.DAOClientes;
 import dao.DAOInventario;
 import model.Articulo;
 import model.Categoria;
+import model.Cliente;
+import model.ModeloClientes;
 import model.ModeloInventario;
 import model.ModeloUsuarios;
 import model.Usuario;
@@ -17,6 +20,7 @@ public class Controlador{
 
 	private ModeloUsuarios modeloUsuarios;
 	private ModeloInventario modeloInventario;
+	private ModeloClientes modeloClientes;
 	private VistaPersonalizarFondo vistaPersonalizarFondo;
 	private VistaInicio vista;
 	private VistaPrincipal vistaPrincipal;
@@ -47,13 +51,10 @@ public class Controlador{
 	}
 	
 
-	public void crearModeloInventario() {
-			this.modeloInventario = new ModeloInventario(new DAOInventario());
-	}
-	
 	public void agregarVistaPremium(VistaPrincipal vistaPrincipal) {
 		this.vistaPrincipal = vistaPrincipal;
 	}
+
 
 	public void personalizarFondo() {
 		vistaPrincipal.deshabilitar();
@@ -89,12 +90,29 @@ public class Controlador{
 		}
 	}
 
+	public void actualizarUsuarioAceptado(Usuario usuarioAceptado) {
+		this.usuarioAceptado = usuarioAceptado;
+	}
+
+	
+	public void crearModeloInventario() {
+			this.modeloInventario = new ModeloInventario(new DAOInventario());
+	}
+	public void crearModeloClientes() {
+		this.modeloClientes = new ModeloClientes(new DAOClientes());
+	}
+	
+
 	public String[][] getDatosTablaUsuarios(){
 		return modeloUsuarios.getUsuarios();
 	}
 	
 	public String[][] getDatosTablaArticulos(){
 		return modeloInventario.getArticulos();
+	}
+
+	public String[][] getDatosTablaClientes(){
+		return modeloClientes.getClientes();
 	}
 
 	public boolean borrarUsuario(int numeroDeUsuario) {
@@ -110,9 +128,8 @@ public class Controlador{
 		modeloInventario.borrarArticulo(codigo, nombre, posicion, cantidad, proveedor, vencimiento, detalle);			
 	}
 	
-	
-	public void actualizarUsuarioAceptado(Usuario usuarioAceptado) {
-		this.usuarioAceptado = usuarioAceptado;
+	public void borrarCliente(String nombre,String direccion,long telefono,String mail) {
+		modeloClientes.borrarCliente( nombre, direccion, telefono, mail);			
 	}
 	
 	public boolean agregarUsuario(String nombre,String contrasena, String nivelDeAcceso) {
@@ -126,6 +143,10 @@ public class Controlador{
 	
 	public void agregarArticulo(String codigo,String nombre,String cantidad,String detalle,String posicion,String proveedor,String vencimiento) {
 		modeloInventario.agregarArticuloDAO(codigo,nombre,cantidad,detalle,posicion,proveedor,vencimiento);
+	}
+	
+	public void agregarCliente(String nombre,String direccion,long telefono,String mail) {
+		modeloClientes.agregarClienteDAO( nombre, direccion, telefono, mail);
 	}
 	
 	
@@ -154,6 +175,8 @@ public class Controlador{
 		modeloInventario.actualizarArticulo(anterioresDatosArticulo,nuevosDatosArticulo);
 	}
 	
-	
+	public void actualizarCliente(Cliente anterioresDatosCliente,Cliente nuevosDatosCliente) {
+		modeloClientes.actualizarCliente(anterioresDatosCliente,nuevosDatosCliente);
+	}
 	
 }

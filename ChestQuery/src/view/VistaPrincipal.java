@@ -125,7 +125,8 @@ public class VistaPrincipal {
 		boton2.setContentAreaFilled(false);
 		boton2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TabbedPaneClientes nuevoPanel = new TabbedPaneClientes();
+				controlador.crearModeloClientes();
+				TabbedPaneClientes nuevoPanel = new TabbedPaneClientes(controlador);
 				asignarPanelPrincipal(nuevoPanel);
 			}
 		});
