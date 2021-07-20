@@ -1,5 +1,5 @@
 # ChestQuery
-Aplicación para gestión de tablas SQL por conexión JDBC
+Aplicación para gestión de tablas SQL por medio de conexión JDBC
 
 Esta aplicación fue desarrollada con la finalidad de plasmar diversos conceptos en ella, tales como:
 
