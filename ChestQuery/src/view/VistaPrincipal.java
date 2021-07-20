@@ -16,6 +16,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
+import javax.swing.UIManager;
 
 import controller.Controlador;
 import model.Usuario;
@@ -138,7 +139,8 @@ public class VistaPrincipal {
 		boton3.setContentAreaFilled(false);
 		boton3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TabbedPaneProveedores nuevoPanel = new TabbedPaneProveedores();
+				controlador.crearModeloProveedores();
+				TabbedPaneProveedores nuevoPanel = new TabbedPaneProveedores(controlador);
 				asignarPanelPrincipal(nuevoPanel);
 			}
 		});
@@ -150,7 +152,7 @@ public class VistaPrincipal {
 		boton4.setContentAreaFilled(false);
 		boton4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TabbedPaneIndefinido nuevoPanel = new TabbedPaneIndefinido();
+				TabbedPaneReportes nuevoPanel = new TabbedPaneReportes(controlador);
 				asignarPanelPrincipal(nuevoPanel);
 			}
 		});
@@ -193,12 +195,11 @@ public class VistaPrincipal {
 		});
 		mnAjustes.add(itemBloqueo);
 
-		JMenuItem item3 = new JMenuItem("3");
-		mnAjustes.add(item3);
-
 		JMenu mnAyuda = new JMenu("Ayuda");
 		menuBar.add(mnAyuda);
 
+		
+		
 		JMenuItem itemContacto = new JMenuItem("Contacto");
 		itemContacto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -130,7 +130,6 @@ public class DAOInventario {
 					+ "'"+posicion+"'," 
 					+ "'"+cantidad+"');";
 			stmt.executeUpdate(consulta);
-
 			stmt.close();
 			con.close();
 		} catch (SQLException e) {

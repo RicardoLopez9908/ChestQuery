@@ -1,31 +1,19 @@
-#modificamos diseno de A(Usuario1)
-#Fri Jul 16 20:39:14 ART 2021
+#Eliminamos el usuario numero :4
+#Tue Jul 20 18:33:52 ART 2021
 Usuario1=A
 Usuario1Contrasena=A
-Usuario1Diseno=1
-Usuario5=OPERARIO2
-Usuario4=ANGELES
-CantidadUsuarios=7
-Usuario3=RICARDO
-Usuario2=NAZARENA
-Usuario7=SUPERVISORPRODUCCION
-Usuario6=SUEPERVISORLOGISTICA
-Usuario6Contrasena=LOGISTICA
-Usuario2NivelDeAcceso=MEDIUM
-Usuario3NivelDeAcceso=DEFAULT
-Usuario4Diseno=2
+Usuario1Diseno=5
+Usuario4=NAZARENA
+CantidadUsuarios=4
+Usuario3=OPERARIO2
+Usuario2=RICARDO
+Usuario2NivelDeAcceso=DEFAULT
+Usuario3NivelDeAcceso=MEDIUM
+Usuario4Diseno=0
 Usuario4NivelDeAcceso=DEFAULT
-Usuario5Contrasena=PEPE
-Usuario7NivelDeAcceso=MEDIUM
 Usuario3Contrasena=PEPE
-Usuario5NivelDeAcceso=DEFAULT
-Usuario6NivelDeAcceso=MEDIUM
-Usuario7Diseno=0
-Usuario2Diseno=0
-Usuario2Contrasena=1964
-Usuario7Contrasena=PRODUCCION
-Usuario5Diseno=0
+Usuario2Diseno=2
+Usuario2Contrasena=PEPE
 Usuario1NivelDeAcceso=PREMIUM
-Usuario3Diseno=2
-Usuario6Diseno=0
-Usuario4Contrasena=PEPE
+Usuario3Diseno=0
+Usuario4Contrasena=MASTER

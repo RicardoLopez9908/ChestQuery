@@ -3,17 +3,16 @@ package model;
 public class Proveedor {
 	private String nombre;
 	private String direccion;
-	private int telefono;
+	private long telefono;
 	private String mail;
 	
 	
-	public Proveedor(String nombre,String direccion,int telefono,String mail) {
+	public Proveedor(String nombre,String direccion,long telefono,String mail) {
 		this.nombre=nombre;
 		this.direccion=direccion;
 		this.telefono=telefono;
 		this.mail=mail;
 	}
-	
 	
 	public String getNombre() {
 		return nombre;
@@ -21,7 +20,7 @@ public class Proveedor {
 	public String getDireccion() {
 		return direccion;
 	}
-	public int getTelefono() {
+	public long getTelefono() {
 		return telefono;
 	}
 	public String getMail() {
@@ -31,7 +30,5 @@ public class Proveedor {
 	public String toString() {
 		return nombre+direccion+telefono+mail;
 	}
-	
-	
-	
+
 }

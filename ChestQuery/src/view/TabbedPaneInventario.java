@@ -51,7 +51,8 @@ public class TabbedPaneInventario extends JTabbedPane {
 	private JPanel pnl_centroConsultarArticulo;
 	private JPanel pnl_surConsultarArticulo;
 
-	private JFormattedTextField txt_vencimiento;
+	private JFormattedTextField txt_vencimiento1;
+	private JFormattedTextField txt_vencimiento2;
 	private DefaultTableModel modeloTablaArticulos;
 	
 	private Articulo anterioresDatosArticulo;
@@ -204,19 +205,18 @@ public class TabbedPaneInventario extends JTabbedPane {
 		gbc_vencimiento.gridy = 5;
 		pnl_centroAgregarArticulo.add(lbl_vencimiento, gbc_vencimiento);
 
-		txt_vencimiento = null;
 		try {
 			MaskFormatter formatter = new MaskFormatter("## / ## / ####");
-			txt_vencimiento = new JFormattedTextField(formatter);
+			txt_vencimiento1 = new JFormattedTextField(formatter);
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
-		txt_vencimiento.setFont(FUENTE);
-		txt_vencimiento.setColumns(15);
+		txt_vencimiento1.setFont(FUENTE);
+		txt_vencimiento1.setColumns(15);
 		GridBagConstraints gbc_txtVencimiento = new GridBagConstraints();
 		gbc_txtVencimiento.gridx = 3;
 		gbc_txtVencimiento.gridy = 5;
-		pnl_centroAgregarArticulo.add(txt_vencimiento, gbc_txtVencimiento);
+		pnl_centroAgregarArticulo.add(txt_vencimiento1, gbc_txtVencimiento);
 
 		JLabel lbl_posicion = new JLabel("Posición:");
 		lbl_posicion.setFont(FUENTE);
@@ -276,7 +276,7 @@ public class TabbedPaneInventario extends JTabbedPane {
 			public void actionPerformed(ActionEvent e) {
 				txt_nombre.setText("");
 				txt_codigo.setText("");
-				txt_vencimiento.setText("");
+				txt_vencimiento1.setText("");
 				txt_cantidad.setText("");
 				txt_detalle.setText("");
 				txt_posicion.setText("");
@@ -291,7 +291,7 @@ public class TabbedPaneInventario extends JTabbedPane {
 				if (!((txt_codigo.getText().isEmpty()) || (txt_nombre.getText().isEmpty())
 						|| (txt_cantidad.getText().isEmpty()) || (txt_detalle.getText().isEmpty())
 						|| (txt_posicion.getText().isEmpty()) || (txt_proveedor.getText().isEmpty())
-						|| (txt_vencimiento.getText().isEmpty()))) {
+						|| (txt_vencimiento1.getText().isEmpty()))) {
 					controlador.agregarArticulo(
 							txt_codigo.getText(),
 							txt_nombre.getText(),
@@ -299,7 +299,7 @@ public class TabbedPaneInventario extends JTabbedPane {
 							txt_detalle.getText(),
 							txt_posicion.getText(),
 							txt_proveedor.getText(),
-							txt_vencimiento.getText());
+							txt_vencimiento1.getText());
 					
 					actualizarDatosTabla();
 					txt_nombre.setText("");
@@ -308,7 +308,7 @@ public class TabbedPaneInventario extends JTabbedPane {
 					txt_detalle.setText("");
 					txt_posicion.setText("");
 					txt_proveedor.setText("");
-					txt_vencimiento.setText("");
+					txt_vencimiento1.setText("");
 					dimensionarTablas(tablaArticulos1);
 					dimensionarTablas(tablaArticulos2);
 				}else {
@@ -666,19 +666,18 @@ public class TabbedPaneInventario extends JTabbedPane {
 		gbc_vencimiento.gridy = 11;
 		pnl_surConsultarArticulo.add(lbl_vencimiento, gbc_vencimiento);
 
-		txt_vencimiento = null;
 		try {
 			MaskFormatter formatter = new MaskFormatter("## / ## / ####");
-			txt_vencimiento = new JFormattedTextField(formatter);
+			txt_vencimiento2 = new JFormattedTextField(formatter);
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
-		txt_vencimiento.setFont(FUENTE);
-		txt_vencimiento.setColumns(15);
+		txt_vencimiento2.setFont(FUENTE);
+		txt_vencimiento2.setColumns(15);
 		GridBagConstraints gbc_txtVencimiento = new GridBagConstraints();
 		gbc_txtVencimiento.gridx = 3;
 		gbc_txtVencimiento.gridy = 11;
-		pnl_surConsultarArticulo.add(txt_vencimiento, gbc_txtVencimiento);
+		pnl_surConsultarArticulo.add(txt_vencimiento2, gbc_txtVencimiento);
 
 
 		JLabel lbl_detalle = new JLabel("Detalle:");
@@ -719,14 +718,14 @@ public class TabbedPaneInventario extends JTabbedPane {
 		btn_actualizar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				nuevosDatosArticulo = new Articulo(txt_nombre.getText(),Long.parseLong(txt_codigo.getText()),Integer.parseInt(txt_cantidad.getText()),Integer.parseInt(txt_posicion.getText()),txt_proveedor.getText(),txt_vencimiento.getText(),txt_detalle.getText());
+				nuevosDatosArticulo = new Articulo(txt_nombre.getText(),Long.parseLong(txt_codigo.getText()),Integer.parseInt(txt_cantidad.getText()),Integer.parseInt(txt_posicion.getText()),txt_proveedor.getText(),txt_vencimiento2.getText(),txt_detalle.getText());
 				if(!anterioresDatosArticulo.equals(nuevosDatosArticulo)) {
 					controlador.actualizarArticulo(anterioresDatosArticulo,nuevosDatosArticulo);
 					txt_codigo.setText("");
 					txt_nombre.setText("");
 					txt_cantidad.setText("");
 					txt_detalle.setText("");
-					txt_vencimiento.setText("");
+					txt_vencimiento2.setText("");
 					txt_proveedor.setText("");
 					txt_posicion.setText("");
 					
@@ -767,10 +766,10 @@ public class TabbedPaneInventario extends JTabbedPane {
 					txt_posicion.setText((String) tablaArticulos2.getValueAt(tablaArticulos2.getSelectedRow(), 2));
 					txt_cantidad.setText((String) tablaArticulos2.getValueAt(tablaArticulos2.getSelectedRow(), 3));
 					txt_proveedor.setText((String) tablaArticulos2.getValueAt(tablaArticulos2.getSelectedRow(), 4));
-					txt_vencimiento.setText((String) tablaArticulos2.getValueAt(tablaArticulos2.getSelectedRow(), 5));
+					txt_vencimiento2.setText((String) tablaArticulos2.getValueAt(tablaArticulos2.getSelectedRow(), 5));
 					txt_detalle.setText((String) tablaArticulos2.getValueAt(tablaArticulos2.getSelectedRow(), 6));
 					
-					anterioresDatosArticulo = new Articulo(txt_nombre.getText(),Long.parseLong(txt_codigo.getText()),Integer.parseInt(txt_cantidad.getText()),Integer.parseInt(txt_posicion.getText()),txt_proveedor.getText(),txt_vencimiento.getText(),txt_detalle.getText());
+					anterioresDatosArticulo = new Articulo(txt_nombre.getText(),Long.parseLong(txt_codigo.getText()),Integer.parseInt(txt_cantidad.getText()),Integer.parseInt(txt_posicion.getText()),txt_proveedor.getText(),txt_vencimiento2.getText(),txt_detalle.getText());
 					
 				}
 			}

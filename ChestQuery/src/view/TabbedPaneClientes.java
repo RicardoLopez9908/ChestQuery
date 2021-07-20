@@ -107,6 +107,14 @@ public class TabbedPaneClientes extends JTabbedPane {
 		GridBagConstraints gbc_txtNombre = new GridBagConstraints();
 		gbc_txtNombre.gridx = 3;
 		gbc_txtNombre.gridy = 1;
+		txt_nombre.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (Character.isLowerCase(c)) {
+					e.setKeyChar(Character.toUpperCase(c));
+				}
+			}
+		});
 		pnl_centroAgregarCliente.add(txt_nombre, gbc_txtNombre);
 
 		JLabel lbl_direccion = new JLabel("Dirección:");
@@ -123,6 +131,14 @@ public class TabbedPaneClientes extends JTabbedPane {
 		GridBagConstraints gbc_txtDireccion = new GridBagConstraints();
 		gbc_txtDireccion.gridx = 3;
 		gbc_txtDireccion.gridy = 2;
+		txt_direccion.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (Character.isLowerCase(c)) {
+					e.setKeyChar(Character.toUpperCase(c));
+				}
+			}
+		});
 		pnl_centroAgregarCliente.add(txt_direccion, gbc_txtDireccion);
 
 		JLabel lbl_telefono = new JLabel("Telefono:");
@@ -415,6 +431,14 @@ public class TabbedPaneClientes extends JTabbedPane {
 		GridBagConstraints gbc_txtNombre = new GridBagConstraints();
 		gbc_txtNombre.gridx = 3;
 		gbc_txtNombre.gridy = 1;
+		txt_nombre.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (Character.isLowerCase(c)) {
+					e.setKeyChar(Character.toUpperCase(c));
+				}
+			}
+		});
 		pnl_surConsultarCliente.add(txt_nombre, gbc_txtNombre);
 
 		JLabel lbl_direccion = new JLabel("Dirección:");
@@ -431,6 +455,14 @@ public class TabbedPaneClientes extends JTabbedPane {
 		GridBagConstraints gbc_txtDireccion = new GridBagConstraints();
 		gbc_txtDireccion.gridx = 3;
 		gbc_txtDireccion.gridy = 3;
+		txt_direccion.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (Character.isLowerCase(c)) {
+					e.setKeyChar(Character.toUpperCase(c));
+				}
+			}
+		});
 		pnl_surConsultarCliente.add(txt_direccion, gbc_txtDireccion);
 
 		JLabel lbl_telefono = new JLabel("Telefono:");
