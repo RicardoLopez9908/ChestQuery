@@ -1,0 +1,10 @@
+CREATE DATABASE Reportes;
+
+USE Reportes;
+
+CREATE TABLE Reportes(  
+	Instruccion CHAR(250),  
+	Usuario CHAR(50),  
+	NumeroDeUsuario INT,  
+	Fecha CHAR(50) );
+
