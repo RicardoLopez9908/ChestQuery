@@ -1,0 +1,31 @@
+CREATE DATABASE Clientes;
+
+USE Clientes;
+
+CREATE TABLE Clientes (
+	Nombre CHAR(30),
+	Direccion CHAR(100),
+	Telefono BIGINT,
+	Mail CHAR(50)
+	
+);
+
+-- 
+--  Datos Iniciales
+-- 
+
+INSERT INTO Clientes VALUES ('TEST CLIENTE', 'AV. SAN MARTÍN 3333, CIUDAD AUTÓNOMA DE BUENOS AIRES, BA','0111516828325','testCliente@ejemplo.com' );
+
+INSERT INTO Clientes VALUES ('LUCIANO AYMAR', 'PEDRO MENDOZA 1234, ROSARIO, SF','0111521512654','lucianoAymar@ejemplo.com');
+
+INSERT INTO Clientes VALUES ('PEDRO CANGELE', 'OLAZABAL 8574, SAN SALVADOR DE JUJUY, JU','0111514365895', 'pedroCangele@ejemplo.com');
+
+INSERT INTO Clientes VALUES ('OMAR PERALTA', 'JURAMENTO 9090, CATAMARCA, CA','0111522456987', 'omarPeralta@ejemplo.com');
+
+INSERT INTO Clientes VALUES ('SEBASTIÁN ORNAZABAL', 'AV. JUAN DE GARAY 870, USUAHIA, TF','0111513365478', 'sebastianOrnazabal@ejemplo.com');
+
+INSERT INTO Clientes VALUES ('JUAN CRUZ LACARRA', 'TACUARI 100, SAN MARTÍN DE LOS ANDES, NE','0111515178239', 'juanCruzLacarra@ejemplo.com');
+
+INSERT INTO Clientes VALUES ('IGNACIO MENDEZ', 'PIEDRAS 345, MENDOZA, ME','0111516789456','ignacioMendez@ejemplo.com' );
+
+SET SQL_SAFE_UPDATES = 0;
