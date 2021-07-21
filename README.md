@@ -67,3 +67,8 @@ Esta aplicación fue desarrollada con la finalidad de plasmar diversos conceptos
 
 ✔️ No es necesario conectarte a Internet para usar el inventario, toda la información se almacena directamente en la base de datos local. Exceptuando los usuarios, los cuales se acceden mediante un archivo de texto (Solo para mostrar su uso).
 
+
+__Para comenzar la experiencia, debemos utilizar el usuario premium :__
+
+__nombre: USUARIO__
+__contraseña: USUARIO__
