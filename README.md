@@ -20,7 +20,7 @@ Esta aplicación fue desarrollada con la finalidad de plasmar diversos conceptos
 - 🗒️ Manejo de interfaces graficas propias de Java.
  
 
-<img src=" https://github.com/RicardoLopez9908/ChestQuery/blob/master/imagenes/inicio_ChestQuery.png" width="500">
+<img src="https://github.com/RicardoLopez9908/ChestQuery/blob/master/imagenes/inicio_ChestQuery.png" width="500">
  
  
 ✔️ Con ChestQuery es posible crear múltiples usuarios con diversos niveles de accesibilidad.
