@@ -1,19 +1,5 @@
-#Eliminamos el usuario numero :4
-#Tue Jul 20 18:33:52 ART 2021
-Usuario1=A
-Usuario1Contrasena=A
+Usuario1=USUARIO
+Usuario1Contrasena=USUARIO
 Usuario1Diseno=5
-Usuario4=NAZARENA
-CantidadUsuarios=4
-Usuario3=OPERARIO2
-Usuario2=RICARDO
-Usuario2NivelDeAcceso=DEFAULT
-Usuario3NivelDeAcceso=MEDIUM
-Usuario4Diseno=0
-Usuario4NivelDeAcceso=DEFAULT
-Usuario3Contrasena=PEPE
-Usuario2Diseno=2
-Usuario2Contrasena=PEPE
+CantidadUsuarios=1
 Usuario1NivelDeAcceso=PREMIUM
-Usuario3Diseno=0
-Usuario4Contrasena=MASTER
