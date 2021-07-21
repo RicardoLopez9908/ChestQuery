@@ -47,7 +47,7 @@ Esta aplicación fue desarrollada con la finalidad de plasmar diversos conceptos
 <img src="https://github.com/RicardoLopez9908/ChestQuery/blob/master/imagenes/opcionesPersonalizacion_ChestQuery.png" width="500">
 
 
-✔️ Cuenta con la opción bloquer la pantalla, para acceder solo con la contraseña adecuada.
+✔️ Cuenta con la opción bloquear la pantalla, para acceder solo con la contraseña adecuada.
 
 
 <img src="https://github.com/RicardoLopez9908/ChestQuery/blob/master/imagenes/pantallaBloqueo_ChestQuery.png" width="500">
